@@ -1,9 +1,0 @@
-Entity: Royaume de Jimma
-Wikipedia Title: Royaume de Jimma
-URL: https://fr.wikipedia.org/wiki/Royaume_de_Jimma
-Region: Afrique de l'Est
-Period: 1830 - 1932
-================================================================================
-
-Le Royaume de Jimma est un royaume de la région de Ghibie, fondé par Abba Jifar en 1830. Il est entouré à l'ouest par le royaume de Limmu-Ennaria, à l'est par le royaume sidama de Janjero et au sud par le royaume de Kaffa. Jimma constitue le royaume le plus puissant du point de vue militaire dans la région de Gibe.
-Vers 1884, Jimma devient tributaire de l'Empire éthiopien, il est totalement annexé en 1932.

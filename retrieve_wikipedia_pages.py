@@ -102,7 +102,7 @@ def sanitize_filename(title: str) -> str:
 
 
 def main():
-    csv_path = "civilisations_afrique_precoloniale.csv"
+    csv_path = "data/raw/civilisations_afrique_precoloniale.csv"
     
     # Create output directory
     os.makedirs(OUTPUT_DIR, exist_ok=True)

@@ -1,8 +1,0 @@
-Entity: Empire Wolof
-Wikipedia Title: Empire du Djolof
-URL: https://fr.wikipedia.org/wiki/Empire_du_Djolof
-Region: Afrique de l'Ouest
-Period: 1350 - 1889
-================================================================================
-
-L'Empire Djolof, également connu sous le nom de Grand Djolof ou Empire Wolof, est un État Wolof du Sénégal actuel, qui régnait sur des parties de la Mauritanie et de la Gambie du milieu du XIVe siècle jusqu'en 1549. Après la bataille de Danki, ses États vassaux sont totalement ou de facto indépendants ; à cette époque, il est connu sous le nom de Royaume de Djolof.

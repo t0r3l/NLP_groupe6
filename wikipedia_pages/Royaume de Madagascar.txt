@@ -1,9 +1,0 @@
-Entity: Royaume de Madagascar
-Wikipedia Title: Royaume de Madagascar
-URL: https://fr.wikipedia.org/wiki/Royaume_de_Madagascar
-Region: Afrique australe
-Period: 1540/1740 - 1896
-================================================================================
-
-Le royaume de Madagascar, également connu sous le nom de royaume Merina (ou d'Imerina), est une entité politique souveraine établie au centre de Madagascar du 27 octobre 1817 au 1er mars 1897, date à laquelle il est aboli par décision du général Gallieni, Madagascar étant récemment devenue une colonie française.
-Au cours de ces quatre-vingt années tumultueuses, les souverains mérinas revendiquent le titre de Mpanjakan'i Madagasikara (« souverain de Madagascar »), sous l'influence du Royaume-Uni. Cette dénomination n'est cependant pas acceptée dans toute l'île : bien que les princes de chaque ethnie reconnaissent un lien de suzeraineté envers les souverains mérinas, quelques régions telles que le pays Tanala d'Ikongo dans le sud-est, l'extrême sud semi-désertique et l'Ambongo, une zone peu habitée du nord-ouest de l'île, demeurent insoumises.

@@ -1,9 +1,0 @@
-Entity: Royaume zoulou
-Wikipedia Title: Royaume zoulou
-URL: https://fr.wikipedia.org/wiki/Royaume_zoulou
-Region: Afrique australe
-Period: 1816 - 1897
-================================================================================
-
-Le Royaume zoulou, parfois désigné sous le terme d'Empire zoulou (ou assez imprécisément Zoulouland) est un ancien territoire d'Afrique australe dominé par les Zoulous, situé originellement le long de la côte de l'océan Indien entre la rivière Tugela au sud et la rivière Pongola au nord, au nord-est de l'actuelle province du KwaZulu-Natal en Afrique du Sud.
-En 1970 est créé, dans le cadre de l'apartheid, le bantoustan KwaZulu. La région est réintégrée dans l'Afrique du Sud en 1994 et compose aujourd'hui la province du KwaZulu-Natal.

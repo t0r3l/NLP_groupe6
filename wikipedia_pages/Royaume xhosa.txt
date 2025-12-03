@@ -1,8 +1,0 @@
-Entity: Royaume xhosa
-Wikipedia Title: Xhosa (peuple)
-URL: https://fr.wikipedia.org/wiki/Xhosa_(peuple)
-Region: Afrique australe
-Period: 1775 - 1885/présent
-================================================================================
-
-Les Xhosa (prononcé [ǁʰɔsɑ] ) sont un peuple d'Afrique du Sud parlant le xhosa et se désignant sous le nom d'amaXhosa.
