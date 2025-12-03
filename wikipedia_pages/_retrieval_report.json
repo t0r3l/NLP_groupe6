@@ -1,0 +1,1103 @@
+{
+  "total": 137,
+  "retrieved": 132,
+  "not_retrieved": 5,
+  "retry_summary": {
+    "attempted": 8,
+    "successful": 3,
+    "failed": 5
+  },
+  "results": [
+    {
+      "entity": "Royaume Bushi",
+      "url": "https://fr.wikipedia.org/wiki/Royaume_Bushi",
+      "region": "Afrique de l'Est",
+      "status": "success",
+      "retrieved": true,
+      "output_file": "wikipedia_pages/Royaume Bushi.txt"
+    },
+    {
+      "entity": "Nouvel Empire",
+      "url": "https://fr.wikipedia.org/wiki/Nouvel_Empire",
+      "region": "Afrique du Nord",
+      "status": "success",
+      "retrieved": true,
+      "output_file": "wikipedia_pages/Nouvel Empire.txt"
+    },
+    {
+      "entity": "Royaume de Kerma",
+      "url": "https://fr.wikipedia.org/wiki/Kerma",
+      "region": "Afrique du Nord",
+      "status": "success",
+      "retrieved": true,
+      "output_file": "wikipedia_pages/Royaume de Kerma.txt"
+    },
+    {
+      "entity": "Royaume de Koush",
+      "url": "https://fr.wikipedia.org/wiki/Royaume_de_Koush",
+      "region": "Afrique du Nord",
+      "status": "success",
+      "retrieved": true,
+      "output_file": "wikipedia_pages/Royaume de Koush.txt"
+    },
+    {
+      "entity": "Civilisation carthaginoise",
+      "url": "https://fr.wikipedia.org/wiki/Civilisation_carthaginoise",
+      "region": "Afrique du Nord",
+      "status": "success",
+      "retrieved": true,
+      "output_file": "wikipedia_pages/Civilisation carthaginoise.txt"
+    },
+    {
+      "entity": "Blemmyes",
+      "url": "https://fr.wikipedia.org/wiki/Blemmyes",
+      "region": "Afrique du Nord",
+      "status": "success",
+      "retrieved": true,
+      "output_file": "wikipedia_pages/Blemmyes.txt"
+    },
+    {
+      "entity": "Garamantes",
+      "url": "https://fr.wikipedia.org/wiki/Garamantes",
+      "region": "Afrique du Nord",
+      "status": "success",
+      "retrieved": true,
+      "output_file": "wikipedia_pages/Garamantes.txt"
+    },
+    {
+      "entity": "Royaume ptolémaïque",
+      "url": "https://fr.wikipedia.org/wiki/Royaume_lagide",
+      "region": "Afrique du Nord",
+      "status": "success",
+      "retrieved": true,
+      "output_file": "wikipedia_pages/Royaume ptolémaïque.txt"
+    },
+    {
+      "entity": "Première Maurétanie",
+      "url": "https://fr.wikipedia.org/wiki/Royaume_de_Maurétanie",
+      "region": "Afrique du Nord",
+      "status": "success",
+      "retrieved": true,
+      "output_file": "wikipedia_pages/Première Maurétanie.txt"
+    },
+    {
+      "entity": "Numidie",
+      "url": "https://fr.wikipedia.org/wiki/Royaume_de_Numidie",
+      "region": "Afrique du Nord",
+      "status": "success",
+      "retrieved": true,
+      "output_file": "wikipedia_pages/Numidie.txt"
+    },
+    {
+      "entity": "Makurie",
+      "url": "https://fr.wikipedia.org/wiki/Makurie",
+      "region": "Afrique du Nord",
+      "status": "success",
+      "retrieved": true,
+      "output_file": "wikipedia_pages/Makurie.txt"
+    },
+    {
+      "entity": "Nobatie",
+      "url": "https://fr.wikipedia.org/wiki/Nobatie",
+      "region": "Afrique du Nord",
+      "status": "success",
+      "retrieved": true,
+      "output_file": "wikipedia_pages/Nobatie.txt"
+    },
+    {
+      "entity": "Royaume vandale",
+      "url": "https://fr.wikipedia.org/wiki/Royaume_vandale",
+      "region": "Afrique du Nord",
+      "status": "success",
+      "retrieved": true,
+      "output_file": "wikipedia_pages/Royaume vandale.txt"
+    },
+    {
+      "entity": "Deuxième Maurétanie",
+      "url": "https://fr.wikipedia.org/wiki/Royaume_de_Maurétanie",
+      "region": "Afrique du Nord",
+      "status": "success",
+      "retrieved": true,
+      "output_file": "wikipedia_pages/Deuxième Maurétanie.txt"
+    },
+    {
+      "entity": "Émirat de Nekor",
+      "url": "https://fr.wikipedia.org/wiki/Émirat_de_Nekor",
+      "region": "Afrique du Nord",
+      "status": "success",
+      "retrieved": true,
+      "output_file": "wikipedia_pages/Émirat de Nekor.txt"
+    },
+    {
+      "entity": "Berghouata",
+      "url": "https://fr.wikipedia.org/wiki/Berghouata",
+      "region": "Afrique du Nord",
+      "status": "success",
+      "retrieved": true,
+      "output_file": "wikipedia_pages/Berghouata.txt"
+    },
+    {
+      "entity": "Émirat de Sijilmassa",
+      "url": "https://fr.wikipedia.org/wiki/Émirat_de_Sijilmassa",
+      "region": "Afrique du Nord",
+      "status": "success",
+      "retrieved": true,
+      "output_file": "wikipedia_pages/Émirat de Sijilmassa.txt"
+    },
+    {
+      "entity": "Émirat des Rostémides",
+      "url": "https://fr.wikipedia.org/wiki/Rostémides",
+      "region": "Afrique du Nord",
+      "status": "success",
+      "retrieved": true,
+      "output_file": "wikipedia_pages/Émirat des Rostémides.txt"
+    },
+    {
+      "entity": "Dynastie Idrisside",
+      "url": "https://fr.wikipedia.org/wiki/Idrissides",
+      "region": "Afrique du Nord",
+      "status": "success",
+      "retrieved": true,
+      "output_file": "wikipedia_pages/Dynastie Idrisside.txt"
+    },
+    {
+      "entity": "Califat fatimide",
+      "url": "https://fr.wikipedia.org/wiki/Califat_fatimide",
+      "region": "Afrique du Nord",
+      "status": "success",
+      "retrieved": true,
+      "output_file": "wikipedia_pages/Califat fatimide.txt"
+    },
+    {
+      "entity": "Hammadides",
+      "url": "https://fr.wikipedia.org/wiki/Hammadides",
+      "region": "Afrique du Nord",
+      "status": "success",
+      "retrieved": true,
+      "output_file": "wikipedia_pages/Hammadides.txt"
+    },
+    {
+      "entity": "Dynastie Ziride",
+      "url": "https://fr.wikipedia.org/wiki/Zirides",
+      "region": "Afrique du Nord",
+      "status": "success",
+      "retrieved": true,
+      "output_file": "wikipedia_pages/Dynastie Ziride.txt"
+    },
+    {
+      "entity": "Dynastie des Almoravides",
+      "url": "https://fr.wikipedia.org/wiki/Almoravides",
+      "region": "Afrique du Nord",
+      "status": "success",
+      "retrieved": true,
+      "output_file": "wikipedia_pages/Dynastie des Almoravides.txt"
+    },
+    {
+      "entity": "Dynastie Khourassanides (1)",
+      "url": "https://fr.wikipedia.org/wiki/Khourassanides",
+      "region": "Afrique du Nord",
+      "status": "success",
+      "retrieved": true,
+      "output_file": "wikipedia_pages/Dynastie Khourassanides (1).txt"
+    },
+    {
+      "entity": "Dynastie Khourassanides (2)",
+      "url": "https://fr.wikipedia.org/wiki/Khourassanides",
+      "region": "Afrique du Nord",
+      "status": "success",
+      "retrieved": true,
+      "output_file": "wikipedia_pages/Dynastie Khourassanides (2).txt"
+    },
+    {
+      "entity": "Dynastie des Almohades",
+      "url": "https://fr.wikipedia.org/wiki/Almohades",
+      "status": "failed",
+      "reason": "Could not retrieve page content",
+      "retrieved": false
+    },
+    {
+      "entity": "Dynastie ayyoubide",
+      "url": "https://fr.wikipedia.org/wiki/Sultanat_zianide",
+      "region": "Afrique du Nord",
+      "status": "success",
+      "retrieved": true,
+      "output_file": "wikipedia_pages/Dynastie ayyoubide.txt"
+    },
+    {
+      "entity": "Hafsides",
+      "url": "https://fr.wikipedia.org/wiki/Hafsides",
+      "region": "Afrique du Nord",
+      "status": "success",
+      "retrieved": true,
+      "output_file": "wikipedia_pages/Hafsides.txt"
+    },
+    {
+      "entity": "Royaume zianide de Tlemcen",
+      "url": "https://fr.wikipedia.org/wiki/Sultanat_zianide",
+      "region": "Afrique du Nord",
+      "status": "success",
+      "retrieved": true,
+      "output_file": "wikipedia_pages/Royaume zianide de Tlemcen.txt"
+    },
+    {
+      "entity": "Dynastie Mérinide",
+      "url": "https://fr.wikipedia.org/wiki/Mérinides",
+      "status": "failed",
+      "reason": "Could not retrieve page content",
+      "retrieved": false
+    },
+    {
+      "entity": "Sultanat mamelouk",
+      "url": "https://fr.wikipedia.org/wiki/Sultanat_mamelouk_d'Égypte",
+      "region": "Afrique du Nord",
+      "status": "success",
+      "retrieved": true,
+      "output_file": "wikipedia_pages/Sultanat mamelouk.txt"
+    },
+    {
+      "entity": "Dynastie Wattasside",
+      "url": "https://fr.wikipedia.org/wiki/Wattassides",
+      "region": "Afrique du Nord",
+      "status": "success",
+      "retrieved": true,
+      "output_file": "wikipedia_pages/Dynastie Wattasside.txt"
+    },
+    {
+      "entity": "Sultanat de Sennar",
+      "url": "https://fr.wikipedia.org/wiki/Sultanat_de_Sennar",
+      "region": "Afrique du Nord",
+      "status": "success",
+      "retrieved": true,
+      "output_file": "wikipedia_pages/Sultanat de Sennar.txt"
+    },
+    {
+      "entity": "Saadi principauté de Souss et Tagmadert",
+      "url": "https://fr.wikipedia.org/wiki/Khourassanides",
+      "region": "Afrique du Nord",
+      "status": "success",
+      "retrieved": true,
+      "output_file": "wikipedia_pages/Saadi principauté de Souss et Tagmadert.txt"
+    },
+    {
+      "entity": "Royaume des Beni Abbès",
+      "url": "https://fr.wikipedia.org/wiki/Royaume_des_Beni_Abbès",
+      "region": "Afrique du Nord",
+      "status": "success",
+      "retrieved": true,
+      "output_file": "wikipedia_pages/Royaume des Beni Abbès.txt"
+    },
+    {
+      "entity": "Dynastie Saadienne",
+      "url": "https://fr.wikipedia.org/wiki/Saadiens",
+      "region": "Afrique du Nord",
+      "status": "success",
+      "retrieved": true,
+      "output_file": "wikipedia_pages/Dynastie Saadienne.txt"
+    },
+    {
+      "entity": "Principauté Naqsid de Tétouan",
+      "url": "https://fr.wikipedia.org/wiki/Tétouan",
+      "region": "Afrique du Nord",
+      "status": "success",
+      "retrieved": true,
+      "output_file": "wikipedia_pages/Principauté Naqsid de Tétouan.txt"
+    },
+    {
+      "entity": "République du Bouregreg",
+      "url": "https://fr.wikipedia.org/wiki/République_du_Bouregreg",
+      "region": "Afrique du Nord",
+      "status": "success",
+      "retrieved": true,
+      "output_file": "wikipedia_pages/République du Bouregreg.txt"
+    },
+    {
+      "entity": "Dynastie Alaouite",
+      "url": "https://fr.wikipedia.org/wiki/Dynastie_alaouite",
+      "region": "Afrique du Nord",
+      "status": "success",
+      "retrieved": true,
+      "output_file": "wikipedia_pages/Dynastie Alaouite.txt"
+    },
+    {
+      "entity": "Dynastie de Méhémet Ali",
+      "url": "https://fr.wikipedia.org/wiki/Dynastie_de_M%C3%A9h%C3%A9met_Ali",
+      "wikipedia_title": "Dynastie de Méhémet Ali",
+      "status": "success",
+      "output_file": "wikipedia_pages/Dynastie de Méhémet Ali.txt",
+      "retrieved": true
+    },
+    {
+      "entity": "Dynastie Senussi",
+      "url": "https://fr.wikipedia.org/wiki/Famille_Al-Sanoussi",
+      "region": "Afrique du Nord",
+      "status": "success",
+      "retrieved": true,
+      "output_file": "wikipedia_pages/Dynastie Senussi.txt"
+    },
+    {
+      "entity": "Pays de Pount",
+      "url": "https://fr.wikipedia.org/wiki/Pays_de_Pount",
+      "region": "Afrique de l'Est",
+      "status": "success",
+      "retrieved": true,
+      "output_file": "wikipedia_pages/Pays de Pount.txt"
+    },
+    {
+      "entity": "Royaume de D'mt",
+      "url": "https://fr.wikipedia.org/wiki/D'mt",
+      "region": "Afrique de l'Est",
+      "status": "success",
+      "retrieved": true,
+      "output_file": "wikipedia_pages/Royaume de D'mt.txt"
+    },
+    {
+      "entity": "Royaume d'Aksoum",
+      "url": "https://fr.wikipedia.org/wiki/Royaume_d'Aksoum",
+      "region": "Afrique de l'Est",
+      "status": "success",
+      "retrieved": true,
+      "output_file": "wikipedia_pages/Royaume d'Aksoum.txt"
+    },
+    {
+      "entity": "Sultanat de Mogadiscio",
+      "url": "https://fr.wikipedia.org/wiki/Sultanat_de_Mogadiscio",
+      "region": "Afrique de l'Est",
+      "status": "success",
+      "retrieved": true,
+      "output_file": "wikipedia_pages/Sultanat de Mogadiscio.txt"
+    },
+    {
+      "entity": "Sultanat de Kilwa",
+      "url": "https://fr.wikipedia.org/wiki/Sultanat_de_Kilwa",
+      "region": "Afrique de l'Est",
+      "status": "success",
+      "retrieved": true,
+      "output_file": "wikipedia_pages/Sultanat de Kilwa.txt"
+    },
+    {
+      "entity": "Empire éthiopien",
+      "url": "https://fr.wikipedia.org/wiki/Empire_éthiopien",
+      "region": "Afrique de l'Est",
+      "status": "success",
+      "retrieved": true,
+      "output_file": "wikipedia_pages/Empire éthiopien.txt"
+    },
+    {
+      "entity": "Royaume Dadjo",
+      "url": "https://fr.wikipedia.org/wiki/Royaume_Dadjo",
+      "region": "Afrique de l'Est",
+      "status": "success",
+      "retrieved": true,
+      "output_file": "wikipedia_pages/Royaume Dadjo.txt"
+    },
+    {
+      "entity": "Royaume d'Alodie",
+      "url": "https://fr.wikipedia.org/wiki/Royaume_d'Alodie",
+      "region": "Afrique de l'Est",
+      "status": "success",
+      "retrieved": true,
+      "output_file": "wikipedia_pages/Royaume d'Alodie.txt"
+    },
+    {
+      "entity": "Sultanat d'Ifat",
+      "url": "https://fr.wikipedia.org/wiki/Sultanat_d'Ifat",
+      "region": "Afrique de l'Est",
+      "status": "success",
+      "retrieved": true,
+      "output_file": "wikipedia_pages/Sultanat d'Ifat.txt"
+    },
+    {
+      "entity": "Sultanat Warsangali",
+      "url": "https://fr.wikipedia.org/wiki/Warsangali",
+      "region": "Afrique de l'Est",
+      "status": "success",
+      "retrieved": true,
+      "output_file": "wikipedia_pages/Sultanat Warsangali.txt"
+    },
+    {
+      "entity": "Royaume de Buganda",
+      "url": "https://fr.wikipedia.org/wiki/Buganda",
+      "region": "Afrique de l'Est",
+      "status": "success",
+      "retrieved": true,
+      "output_file": "wikipedia_pages/Royaume de Buganda.txt"
+    },
+    {
+      "entity": "Royaume du Burundi",
+      "url": "https://fr.wikipedia.org/wiki/Royaume_du_Burundi",
+      "region": "Afrique de l'Est",
+      "status": "success",
+      "retrieved": true,
+      "output_file": "wikipedia_pages/Royaume du Burundi.txt"
+    },
+    {
+      "entity": "Royaume du Rwanda",
+      "url": "https://fr.wikipedia.org/wiki/Royaume_du_Rwanda",
+      "region": "Afrique de l'Est",
+      "status": "success",
+      "retrieved": true,
+      "output_file": "wikipedia_pages/Royaume du Rwanda.txt"
+    },
+    {
+      "entity": "Sultanat Ajuran",
+      "url": "https://fr.wikipedia.org/wiki/Sultanat_Ajuran",
+      "region": "Afrique de l'Est",
+      "status": "success",
+      "retrieved": true,
+      "output_file": "wikipedia_pages/Sultanat Ajuran.txt"
+    },
+    {
+      "entity": "Sultanat d'Adal",
+      "url": "https://fr.wikipedia.org/wiki/Sultanat_d'Adal",
+      "region": "Afrique de l'Est",
+      "status": "success",
+      "retrieved": true,
+      "output_file": "wikipedia_pages/Sultanat d'Adal.txt"
+    },
+    {
+      "entity": "Empire du Kitara",
+      "url": "https://fr.wikipedia.org/wiki/Empire_du_Kitara",
+      "region": "Afrique de l'Est",
+      "status": "success",
+      "retrieved": true,
+      "output_file": "wikipedia_pages/Empire du Kitara.txt"
+    },
+    {
+      "entity": "Sultanat du Geledi",
+      "url": "https://fr.wikipedia.org/wiki/Sultanat_Geledi",
+      "region": "Afrique de l'Est",
+      "status": "success",
+      "retrieved": true,
+      "output_file": "wikipedia_pages/Sultanat du Geledi.txt"
+    },
+    {
+      "entity": "Premier Sultanat du Darfour",
+      "url": "https://fr.wikipedia.org/wiki/Sultanat_du_Darfour",
+      "region": "Afrique de l'Est",
+      "status": "success",
+      "retrieved": true,
+      "output_file": "wikipedia_pages/Premier Sultanat du Darfour.txt"
+    },
+    {
+      "entity": "Sultanat d'Aussa",
+      "url": "https://fr.wikipedia.org/wiki/Awsa",
+      "region": "Afrique de l'Est",
+      "status": "success",
+      "retrieved": true,
+      "output_file": "wikipedia_pages/Sultanat d'Aussa.txt"
+    },
+    {
+      "entity": "Royaume de Gomma",
+      "url": "https://fr.wikipedia.org/wiki/Royaume_de_Gomma",
+      "region": "Afrique de l'Est",
+      "status": "success",
+      "retrieved": true,
+      "output_file": "wikipedia_pages/Royaume de Gomma.txt"
+    },
+    {
+      "entity": "Royaume de Jimma",
+      "url": "https://fr.wikipedia.org/wiki/Royaume_de_Jimma",
+      "region": "Afrique de l'Est",
+      "status": "success",
+      "retrieved": true,
+      "output_file": "wikipedia_pages/Royaume de Jimma.txt"
+    },
+    {
+      "entity": "Royaume de Gumma",
+      "url": "https://fr.wikipedia.org/wiki/Royaume_de_Gumma",
+      "region": "Afrique de l'Est",
+      "status": "success",
+      "retrieved": true,
+      "output_file": "wikipedia_pages/Royaume de Gumma.txt"
+    },
+    {
+      "entity": "Sultanat d'Hobyo",
+      "url": "https://fr.wikipedia.org/wiki/Sultanat_d'Hobyo",
+      "region": "Afrique de l'Est",
+      "status": "success",
+      "retrieved": true,
+      "output_file": "wikipedia_pages/Sultanat d'Hobyo.txt"
+    },
+    {
+      "entity": "Soudan mahdiste",
+      "url": "https://fr.wikipedia.org/wiki/Soudan_mahdiste",
+      "region": "Afrique de l'Est",
+      "status": "success",
+      "retrieved": true,
+      "output_file": "wikipedia_pages/Soudan mahdiste.txt"
+    },
+    {
+      "entity": "Derviches Dhulbahante",
+      "url": "https://fr.wikipedia.org/wiki/Derviches_(Dhulbahante)",
+      "region": "Afrique de l'Est",
+      "status": "success",
+      "retrieved": true,
+      "output_file": "wikipedia_pages/Derviches Dhulbahante.txt"
+    },
+    {
+      "entity": "Second Sultanat du Darfour",
+      "url": "https://fr.wikipedia.org/wiki/Sultanat_du_Darfour",
+      "region": "Afrique de l'Est",
+      "status": "success",
+      "retrieved": true,
+      "output_file": "wikipedia_pages/Second Sultanat du Darfour.txt"
+    },
+    {
+      "entity": "Civilisation nok",
+      "url": "https://fr.wikipedia.org/wiki/Nok_(culture)",
+      "region": "Afrique de l'Ouest",
+      "status": "success",
+      "retrieved": true,
+      "output_file": "wikipedia_pages/Civilisation nok.txt"
+    },
+    {
+      "entity": "Empire du Ghana",
+      "url": "https://fr.wikipedia.org/wiki/Empire_du_Ghana",
+      "region": "Afrique de l'Ouest",
+      "status": "success",
+      "retrieved": true,
+      "output_file": "wikipedia_pages/Empire du Ghana.txt"
+    },
+    {
+      "entity": "Royaume du Fouta-Toro",
+      "url": "https://fr.wikipedia.org/wiki/Royaume_du_Fouta-Toro",
+      "region": "Afrique de l'Ouest",
+      "status": "success",
+      "retrieved": true,
+      "output_file": "wikipedia_pages/Royaume du Fouta-Toro.txt"
+    },
+    {
+      "entity": "Royaume de Nri",
+      "url": "https://fr.wikipedia.org/wiki/Royaume_de_Nri",
+      "region": "Afrique de l'Ouest",
+      "status": "success",
+      "retrieved": true,
+      "output_file": "wikipedia_pages/Royaume de Nri.txt"
+    },
+    {
+      "entity": "Bonoman",
+      "url": "https://fr.wikipedia.org/wiki/Royaume_de_Bono",
+      "region": "Afrique de l'Ouest",
+      "status": "success",
+      "retrieved": true,
+      "output_file": "wikipedia_pages/Bonoman.txt"
+    },
+    {
+      "entity": "Tekrour",
+      "url": "https://fr.wikipedia.org/wiki/Tekrour",
+      "status": "failed",
+      "reason": "Could not retrieve page content",
+      "retrieved": false
+    },
+    {
+      "entity": "Royaume du Bénin",
+      "url": "https://fr.wikipedia.org/wiki/Royaume_du_Bénin",
+      "region": "Afrique de l'Ouest",
+      "status": "success",
+      "retrieved": true,
+      "output_file": "wikipedia_pages/Royaume du Bénin.txt"
+    },
+    {
+      "entity": "Empire d'Ife",
+      "url": "https://fr.wikipedia.org/wiki/Empire_d'Ife",
+      "region": "Afrique de l'Ouest",
+      "status": "success",
+      "retrieved": true,
+      "output_file": "wikipedia_pages/Empire d'Ife.txt"
+    },
+    {
+      "entity": "Empire du Mali",
+      "url": "https://fr.wikipedia.org/wiki/Empire_du_Mali",
+      "region": "Afrique de l'Ouest",
+      "status": "success",
+      "retrieved": true,
+      "output_file": "wikipedia_pages/Empire du Mali.txt"
+    },
+    {
+      "entity": "Waalo",
+      "url": "https://fr.wikipedia.org/wiki/Waalo",
+      "region": "Afrique de l'Ouest",
+      "status": "success",
+      "retrieved": true,
+      "output_file": "wikipedia_pages/Waalo.txt"
+    },
+    {
+      "entity": "Djolof",
+      "url": "https://fr.wikipedia.org/wiki/Empire_du_Djolof",
+      "wikipedia_title": "Empire du Djolof",
+      "status": "success",
+      "output_file": "wikipedia_pages/Djolof.txt",
+      "retrieved": true
+    },
+    {
+      "entity": "Empire Wolof",
+      "url": "https://fr.wikipedia.org/wiki/Empire_du_Djolof",
+      "region": "Afrique de l'Ouest",
+      "status": "success",
+      "retrieved": true,
+      "output_file": "wikipedia_pages/Empire Wolof.txt"
+    },
+    {
+      "entity": "Royaume du Sine",
+      "url": "https://fr.wikipedia.org/wiki/Royaume_du_Sine",
+      "region": "Afrique de l'Ouest",
+      "status": "success",
+      "retrieved": true,
+      "output_file": "wikipedia_pages/Royaume du Sine.txt"
+    },
+    {
+      "entity": "Royaume du Kanem-Bornou",
+      "url": "https://fr.wikipedia.org/wiki/Royaume_du_Kanem-Bornou",
+      "region": "Afrique centrale",
+      "status": "success",
+      "retrieved": true,
+      "output_file": "wikipedia_pages/Royaume du Kanem-Bornou.txt"
+    },
+    {
+      "entity": "Royaume de Dagomba",
+      "url": "https://fr.wikipedia.org/wiki/Royaume_de_Dagomba",
+      "region": "Afrique de l'Ouest",
+      "status": "success",
+      "retrieved": true,
+      "output_file": "wikipedia_pages/Royaume de Dagomba.txt"
+    },
+    {
+      "entity": "Empire songhaï",
+      "url": "https://fr.wikipedia.org/wiki/Empire_songhaï",
+      "region": "Afrique de l'Ouest",
+      "status": "success",
+      "retrieved": true,
+      "output_file": "wikipedia_pages/Empire songhaï.txt"
+    },
+    {
+      "entity": "Royaume shilluk",
+      "url": "https://fr.wikipedia.org/wiki/Shilluk_(monarchie)",
+      "region": "Afrique de l'Ouest",
+      "status": "success",
+      "retrieved": true,
+      "output_file": "wikipedia_pages/Royaume shilluk.txt"
+    },
+    {
+      "entity": "Royaume du Saloum",
+      "url": "https://fr.wikipedia.org/wiki/Royaume_du_Saloum",
+      "region": "Afrique de l'Ouest",
+      "status": "success",
+      "retrieved": true,
+      "output_file": "wikipedia_pages/Royaume du Saloum.txt"
+    },
+    {
+      "entity": "Royaume du Cayor",
+      "url": "https://fr.wikipedia.org/wiki/Royaume_du_Cayor",
+      "region": "Afrique de l'Ouest",
+      "status": "success",
+      "retrieved": true,
+      "output_file": "wikipedia_pages/Royaume du Cayor.txt"
+    },
+    {
+      "entity": "Royaume du Baol",
+      "url": "https://fr.wikipedia.org/wiki/Royaume_du_Baol",
+      "region": "Afrique de l'Ouest",
+      "status": "success",
+      "retrieved": true,
+      "output_file": "wikipedia_pages/Royaume du Baol.txt"
+    },
+    {
+      "entity": "Fouta-Toro (Denianké)",
+      "url": "https://fr.wikipedia.org/wiki/Royaume_du_Fouta-Toro",
+      "region": "Afrique de l'Ouest",
+      "status": "success",
+      "retrieved": true,
+      "output_file": "wikipedia_pages/Fouta-Toro (Denianké).txt"
+    },
+    {
+      "entity": "Kaabunké",
+      "url": "https://fr.wikipedia.org/wiki/Kaabu",
+      "region": "Afrique de l'Ouest",
+      "status": "success",
+      "retrieved": true,
+      "output_file": "wikipedia_pages/Kaabunké.txt"
+    },
+    {
+      "entity": "Royaume bambara de Ségou",
+      "url": "https://fr.wikipedia.org/wiki/Royaume_bambara_de_Ségou",
+      "region": "Afrique de l'Ouest",
+      "status": "success",
+      "retrieved": true,
+      "output_file": "wikipedia_pages/Royaume bambara de Ségou.txt"
+    },
+    {
+      "entity": "Califat de Sokoto",
+      "url": "https://fr.wikipedia.org/wiki/Empire_de_Sokoto",
+      "region": "Afrique de l'Ouest",
+      "status": "success",
+      "retrieved": true,
+      "output_file": "wikipedia_pages/Califat de Sokoto.txt"
+    },
+    {
+      "entity": "Royaume du Dahomey",
+      "url": "https://fr.wikipedia.org/wiki/Royaume_du_Dahomey",
+      "region": "Afrique de l'Ouest",
+      "status": "success",
+      "retrieved": true,
+      "output_file": "wikipedia_pages/Royaume du Dahomey.txt"
+    },
+    {
+      "entity": "Empire ashanti",
+      "url": "https://fr.wikipedia.org/wiki/Empire_ashanti",
+      "region": "Afrique de l'Ouest",
+      "status": "success",
+      "retrieved": true,
+      "output_file": "wikipedia_pages/Empire ashanti.txt"
+    },
+    {
+      "entity": "Royaumes Mossi",
+      "url": "https://fr.wikipedia.org/wiki/Royaume_mossi",
+      "status": "failed",
+      "reason": "Could not retrieve page content",
+      "retrieved": false
+    },
+    {
+      "entity": "Empire kong",
+      "url": "https://fr.wikipedia.org/wiki/Empire_kong",
+      "region": "Afrique de l'Ouest",
+      "status": "success",
+      "retrieved": true,
+      "output_file": "wikipedia_pages/Empire kong.txt"
+    },
+    {
+      "entity": "Empire wassoulou",
+      "url": "https://fr.wikipedia.org/wiki/Empire_wassoulou",
+      "region": "Afrique de l'Ouest",
+      "status": "success",
+      "retrieved": true,
+      "output_file": "wikipedia_pages/Empire wassoulou.txt"
+    },
+    {
+      "entity": "Empire d'Oyo",
+      "url": "https://fr.wikipedia.org/wiki/Empire_d'Oyo",
+      "region": "Afrique de l'Ouest",
+      "status": "success",
+      "retrieved": true,
+      "output_file": "wikipedia_pages/Empire d'Oyo.txt"
+    },
+    {
+      "entity": "Confédération aro",
+      "url": "https://fr.wikipedia.org/wiki/Aro_(peuple)",
+      "region": "Afrique de l'Ouest",
+      "status": "success",
+      "retrieved": true,
+      "output_file": "wikipedia_pages/Confédération aro.txt"
+    },
+    {
+      "entity": "Royaume de Djanglanmey",
+      "url": "https://fr.wikipedia.org/wiki/Djanglanmey",
+      "region": "Afrique de l'Ouest",
+      "status": "success",
+      "retrieved": true,
+      "output_file": "wikipedia_pages/Royaume de Djanglanmey.txt"
+    },
+    {
+      "entity": "Royaume du Kénédougou",
+      "url": "https://fr.wikipedia.org/wiki/Royaume_du_Kénédougou",
+      "region": "Afrique de l'Ouest",
+      "status": "success",
+      "retrieved": true,
+      "output_file": "wikipedia_pages/Royaume du Kénédougou.txt"
+    },
+    {
+      "entity": "Empire toucouleur",
+      "url": "https://fr.wikipedia.org/wiki/Empire_toucouleur",
+      "region": "Afrique de l'Ouest",
+      "status": "success",
+      "retrieved": true,
+      "output_file": "wikipedia_pages/Empire toucouleur.txt"
+    },
+    {
+      "entity": "Empire du Macina",
+      "url": "https://fr.wikipedia.org/wiki/Empire_du_Macina",
+      "region": "Afrique de l'Ouest",
+      "status": "success",
+      "retrieved": true,
+      "output_file": "wikipedia_pages/Empire du Macina.txt"
+    },
+    {
+      "entity": "Imamat du Fouta-Djalon",
+      "url": "https://fr.wikipedia.org/wiki/Imamat_du_Fouta-Djalon",
+      "region": "Afrique de l'Ouest",
+      "status": "success",
+      "retrieved": true,
+      "output_file": "wikipedia_pages/Imamat du Fouta-Djalon.txt"
+    },
+    {
+      "entity": "Royaumes haoussa",
+      "url": "https://fr.wikipedia.org/wiki/Royaumes_haoussa",
+      "region": "Afrique de l'Ouest",
+      "status": "success",
+      "retrieved": true,
+      "output_file": "wikipedia_pages/Royaumes haoussa.txt"
+    },
+    {
+      "entity": "Civilisation Sao",
+      "url": "https://fr.wikipedia.org/wiki/Sao_(civilisation)",
+      "region": "Afrique centrale",
+      "status": "success",
+      "retrieved": true,
+      "output_file": "wikipedia_pages/Civilisation Sao.txt"
+    },
+    {
+      "entity": "Royaume de La'djo (Bandjoun)",
+      "url": "https://fr.wikipedia.org/wiki/Royaume_de_Bandjoun",
+      "region": "Afrique centrale",
+      "status": "success",
+      "retrieved": true,
+      "output_file": "wikipedia_pages/Royaume de La'djo (Bandjoun).txt"
+    },
+    {
+      "entity": "Royaume du Kanem-Bornou",
+      "url": "https://fr.wikipedia.org/wiki/Royaume_du_Kanem-Bornou",
+      "region": "Afrique centrale",
+      "status": "success",
+      "retrieved": true,
+      "output_file": "wikipedia_pages/Royaume du Kanem-Bornou.txt"
+    },
+    {
+      "entity": "Royaume du Kongo",
+      "url": "https://fr.wikipedia.org/wiki/Royaume_du_Kongo",
+      "region": "Afrique centrale",
+      "status": "success",
+      "retrieved": true,
+      "output_file": "wikipedia_pages/Royaume du Kongo.txt"
+    },
+    {
+      "entity": "Royaume du Baguirmi",
+      "url": "https://fr.wikipedia.org/wiki/Royaume_du_Baguirmi",
+      "region": "Afrique centrale",
+      "status": "success",
+      "retrieved": true,
+      "output_file": "wikipedia_pages/Royaume du Baguirmi.txt"
+    },
+    {
+      "entity": "Empire luba",
+      "url": "https://fr.wikipedia.org/wiki/Empire_luba",
+      "region": "Afrique centrale",
+      "status": "success",
+      "retrieved": true,
+      "output_file": "wikipedia_pages/Empire luba.txt"
+    },
+    {
+      "entity": "Royaume de Ndongo",
+      "url": "https://fr.wikipedia.org/wiki/Royaume_de_Ndongo",
+      "region": "Afrique centrale",
+      "status": "success",
+      "retrieved": true,
+      "output_file": "wikipedia_pages/Royaume de Ndongo.txt"
+    },
+    {
+      "entity": "Royaume de Matamba",
+      "url": "https://fr.wikipedia.org/wiki/Royaume_de_Matamba",
+      "region": "Afrique centrale",
+      "status": "success",
+      "retrieved": true,
+      "output_file": "wikipedia_pages/Royaume de Matamba.txt"
+    },
+    {
+      "entity": "Royaume du Ouaddaï",
+      "url": "https://fr.wikipedia.org/wiki/Royaume_du_Ouaddaï",
+      "region": "Afrique centrale",
+      "status": "success",
+      "retrieved": true,
+      "output_file": "wikipedia_pages/Royaume du Ouaddaï.txt"
+    },
+    {
+      "entity": "Royaume Lunda",
+      "url": "https://fr.wikipedia.org/wiki/Royaume_Lunda",
+      "region": "Afrique centrale",
+      "status": "success",
+      "retrieved": true,
+      "output_file": "wikipedia_pages/Royaume Lunda.txt"
+    },
+    {
+      "entity": "Royaume Kuba",
+      "url": "https://fr.wikipedia.org/wiki/Royaume_Kuba",
+      "region": "Afrique centrale",
+      "status": "success",
+      "retrieved": true,
+      "output_file": "wikipedia_pages/Royaume Kuba.txt"
+    },
+    {
+      "entity": "Mapungubwe",
+      "url": "https://fr.wikipedia.org/wiki/Mapungubwe",
+      "status": "failed",
+      "reason": "Could not retrieve page content",
+      "retrieved": false
+    },
+    {
+      "entity": "Royaume du Zimbabwe",
+      "url": "https://fr.wikipedia.org/wiki/Grand_Zimbabwe",
+      "region": "Afrique australe",
+      "status": "success",
+      "retrieved": true,
+      "output_file": "wikipedia_pages/Royaume du Zimbabwe.txt"
+    },
+    {
+      "entity": "Royaume du Monomotapa",
+      "url": "https://fr.wikipedia.org/wiki/Empire_du_Monomotapa",
+      "wikipedia_title": "Empire du Monomotapa",
+      "status": "success",
+      "output_file": "wikipedia_pages/Royaume du Monomotapa.txt",
+      "retrieved": true
+    },
+    {
+      "entity": "Royaume de Butua",
+      "url": "https://fr.wikipedia.org/wiki/Royaume_de_Butua",
+      "region": "Afrique australe",
+      "status": "success",
+      "retrieved": true,
+      "output_file": "wikipedia_pages/Royaume de Butua.txt"
+    },
+    {
+      "entity": "Royaume Maravi",
+      "url": "https://fr.wikipedia.org/wiki/Maravi",
+      "region": "Afrique australe",
+      "status": "success",
+      "retrieved": true,
+      "output_file": "wikipedia_pages/Royaume Maravi.txt"
+    },
+    {
+      "entity": "Empire lozi",
+      "url": "https://fr.wikipedia.org/wiki/Barotseland",
+      "region": "Afrique australe",
+      "status": "success",
+      "retrieved": true,
+      "output_file": "wikipedia_pages/Empire lozi.txt"
+    },
+    {
+      "entity": "Royaumes Ovambos",
+      "url": "https://fr.wikipedia.org/wiki/Ovambos",
+      "region": "Afrique australe",
+      "status": "success",
+      "retrieved": true,
+      "output_file": "wikipedia_pages/Royaumes Ovambos.txt"
+    },
+    {
+      "entity": "Empire rozvi",
+      "url": "https://fr.wikipedia.org/wiki/Empire_rozvi",
+      "region": "Afrique australe",
+      "status": "success",
+      "retrieved": true,
+      "output_file": "wikipedia_pages/Empire rozvi.txt"
+    },
+    {
+      "entity": "Royaume de Madagascar",
+      "url": "https://fr.wikipedia.org/wiki/Royaume_de_Madagascar",
+      "region": "Afrique australe",
+      "status": "success",
+      "retrieved": true,
+      "output_file": "wikipedia_pages/Royaume de Madagascar.txt"
+    },
+    {
+      "entity": "Royaumes tswanas",
+      "url": "https://fr.wikipedia.org/wiki/Tswana_(peuple)",
+      "region": "Afrique australe",
+      "status": "success",
+      "retrieved": true,
+      "output_file": "wikipedia_pages/Royaumes tswanas.txt"
+    },
+    {
+      "entity": "Royaume thembu",
+      "url": "https://fr.wikipedia.org/wiki/Thembu",
+      "region": "Afrique australe",
+      "status": "success",
+      "retrieved": true,
+      "output_file": "wikipedia_pages/Royaume thembu.txt"
+    },
+    {
+      "entity": "Confédération Mthethwa",
+      "url": "https://fr.wikipedia.org/wiki/Mthethwa",
+      "region": "Afrique australe",
+      "status": "success",
+      "retrieved": true,
+      "output_file": "wikipedia_pages/Confédération Mthethwa.txt"
+    },
+    {
+      "entity": "Royaume xhosa",
+      "url": "https://fr.wikipedia.org/wiki/Xhosa_(peuple)",
+      "region": "Afrique australe",
+      "status": "success",
+      "retrieved": true,
+      "output_file": "wikipedia_pages/Royaume xhosa.txt"
+    },
+    {
+      "entity": "Royaume Ndwandwe",
+      "url": "https://fr.wikipedia.org/wiki/Ndwandwe",
+      "region": "Afrique australe",
+      "status": "success",
+      "retrieved": true,
+      "output_file": "wikipedia_pages/Royaume Ndwandwe.txt"
+    },
+    {
+      "entity": "Royaume Hlubi",
+      "url": "https://fr.wikipedia.org/wiki/Hlubi",
+      "region": "Afrique australe",
+      "status": "success",
+      "retrieved": true,
+      "output_file": "wikipedia_pages/Royaume Hlubi.txt"
+    },
+    {
+      "entity": "Royaumes kavango",
+      "url": "https://fr.wikipedia.org/wiki/Kavangos",
+      "region": "Afrique australe",
+      "status": "success",
+      "retrieved": true,
+      "output_file": "wikipedia_pages/Royaumes kavango.txt"
+    },
+    {
+      "entity": "Royaume zoulou",
+      "url": "https://fr.wikipedia.org/wiki/Royaume_zoulou",
+      "region": "Afrique australe",
+      "status": "success",
+      "retrieved": true,
+      "output_file": "wikipedia_pages/Royaume zoulou.txt"
+    },
+    {
+      "entity": "Royaume du Lesotho",
+      "url": "https://fr.wikipedia.org/wiki/Lesotho",
+      "region": "Afrique australe",
+      "status": "success",
+      "retrieved": true,
+      "output_file": "wikipedia_pages/Royaume du Lesotho.txt"
+    },
+    {
+      "entity": "Royaume Mthwakazi/Ndébélé",
+      "url": "https://fr.wikipedia.org/wiki/Ndébélés",
+      "region": "Afrique australe",
+      "status": "success",
+      "retrieved": true,
+      "output_file": "wikipedia_pages/Royaume Mthwakazi_Ndébélé.txt"
+    },
+    {
+      "entity": "Royaume de Gaza",
+      "url": "https://fr.wikipedia.org/wiki/Royaume_de_Gaza",
+      "region": "Afrique australe",
+      "status": "success",
+      "retrieved": true,
+      "output_file": "wikipedia_pages/Royaume de Gaza.txt"
+    },
+    {
+      "entity": "Royaumes Gricquas",
+      "url": "https://fr.wikipedia.org/wiki/Griquas",
+      "region": "Afrique australe",
+      "status": "success",
+      "retrieved": true,
+      "output_file": "wikipedia_pages/Royaumes Gricquas.txt"
+    },
+    {
+      "entity": "Royaume Eswatini",
+      "url": "https://fr.wikipedia.org/wiki/Eswatini",
+      "region": "Afrique australe",
+      "status": "success",
+      "retrieved": true,
+      "output_file": "wikipedia_pages/Royaume Eswatini.txt"
+    }
+  ]
+}

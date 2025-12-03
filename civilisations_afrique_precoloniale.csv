@@ -1,0 +1,138 @@
+entite,url,region,debut,fin,succes
+Royaume Bushi,https://fr.wikipedia.org/wiki/Royaume_Bushi,Afrique de l'Est,1300,XIXe siècle,True
+Nouvel Empire,https://fr.wikipedia.org/wiki/Nouvel_Empire,Afrique du Nord,3100 av. J.-C.,870 av. J.-C.,True
+Royaume de Kerma,https://fr.wikipedia.org/wiki/Kerma,Afrique du Nord,2500 av. J.-C.,1500 av. J.-C.,True
+Royaume de Koush,https://fr.wikipedia.org/wiki/Royaume_de_Koush,Afrique du Nord,1070 av. J.-C.,350 apr. J.-C.,True
+Civilisation carthaginoise,https://fr.wikipedia.org/wiki/Civilisation_carthaginoise,Afrique du Nord,650 av. J.-C.,IIIe siècle apr. J.-C.,True
+Blemmyes,https://fr.wikipedia.org/wiki/Blemmyes,Afrique du Nord,600 av. J.-C.,IIIe siècle apr. J.-C.,True
+Garamantes,https://fr.wikipedia.org/wiki/Garamantes,Afrique du Nord,500 av. J.-C.,700 apr. J.-C.,True
+Royaume ptolémaïque,https://fr.wikipedia.org/wiki/Royaume_lagide,Afrique du Nord,306 av. J.-C.,30 av. J.-C.,True
+Première Maurétanie,https://fr.wikipedia.org/wiki/Royaume_de_Maurétanie,Afrique du Nord,285 av. J.-C.,431 apr. J.-C.,True
+Numidie,https://fr.wikipedia.org/wiki/Royaume_de_Numidie,Afrique du Nord,202 av. J.-C.,46 av. J.-C.,True
+Makurie,https://fr.wikipedia.org/wiki/Makurie,Afrique du Nord,340 apr. J.-C.,1317 apr. J.-C.,True
+Nobatie,https://fr.wikipedia.org/wiki/Nobatie,Afrique du Nord,350 apr. J.-C.,650 apr. J.-C.,True
+Royaume vandale,https://fr.wikipedia.org/wiki/Royaume_vandale,Afrique du Nord,435 apr. J.-C.,534 apr. J.-C.,True
+Deuxième Maurétanie,https://fr.wikipedia.org/wiki/Royaume_de_Maurétanie,Afrique du Nord,533 apr. J.-C.,698 apr. J.-C.,True
+Émirat de Nekor,https://fr.wikipedia.org/wiki/Émirat_de_Nekor,Afrique du Nord,710,1019,True
+Berghouata,https://fr.wikipedia.org/wiki/Berghouata,Afrique du Nord,744,1058,True
+Émirat de Sijilmassa,https://fr.wikipedia.org/wiki/Émirat_de_Sijilmassa,Afrique du Nord,758,1055,True
+Émirat des Rostémides,https://fr.wikipedia.org/wiki/Rostémides,Afrique du Nord,767,909,True
+Dynastie Idrisside,https://fr.wikipedia.org/wiki/Idrissides,Afrique du Nord,789,974,True
+Califat fatimide,https://fr.wikipedia.org/wiki/Califat_fatimide,Afrique du Nord,910,1171,True
+Hammadides,https://fr.wikipedia.org/wiki/Hammadides,Afrique du Nord,1014,1152,True
+Dynastie Ziride,https://fr.wikipedia.org/wiki/Zirides,Afrique du Nord,1048,1148,True
+Dynastie des Almoravides,https://fr.wikipedia.org/wiki/Almoravides,Afrique du Nord,1040,1147,True
+Dynastie Khourassanides (1),https://fr.wikipedia.org/wiki/Khourassanides,Afrique du Nord,1059,1128,True
+Dynastie Khourassanides (2),https://fr.wikipedia.org/wiki/Khourassanides,Afrique du Nord,1148,1158,True
+Dynastie des Almohades,https://fr.wikipedia.org/wiki/Almohades,Afrique du Nord,1121,1269,False
+Dynastie ayyoubide,https://fr.wikipedia.org/wiki/Sultanat_zianide,Afrique du Nord,1171,1254,True
+Hafsides,https://fr.wikipedia.org/wiki/Hafsides,Afrique du Nord,1229,1574,True
+Royaume zianide de Tlemcen,https://fr.wikipedia.org/wiki/Sultanat_zianide,Afrique du Nord,1235,1556,True
+Dynastie Mérinide,https://fr.wikipedia.org/wiki/Mérinides,Afrique du Nord,1248,1465,False
+Sultanat mamelouk,https://fr.wikipedia.org/wiki/Sultanat_mamelouk_d'Égypte,Afrique du Nord,1250,1517,True
+Dynastie Wattasside,https://fr.wikipedia.org/wiki/Wattassides,Afrique du Nord,1420,1554,True
+Sultanat de Sennar,https://fr.wikipedia.org/wiki/Sultanat_de_Sennar,Afrique du Nord,1504,1821,True
+Saadi principauté de Souss et Tagmadert,https://fr.wikipedia.org/wiki/Khourassanides,Afrique du Nord,1509,1554,True
+Royaume des Beni Abbès,https://fr.wikipedia.org/wiki/Royaume_des_Beni_Abbès,Afrique du Nord,1510,1872,True
+Dynastie Saadienne,https://fr.wikipedia.org/wiki/Saadiens,Afrique du Nord,1554,1659,True
+Principauté Naqsid de Tétouan,https://fr.wikipedia.org/wiki/Tétouan,Afrique du Nord,1597,1673,True
+République du Bouregreg,https://fr.wikipedia.org/wiki/République_du_Bouregreg,Afrique du Nord,1627,1668,True
+Dynastie Alaouite,https://fr.wikipedia.org/wiki/Dynastie_alaouite,Afrique du Nord,1666,toujours existante,True
+Dynastie de Méhémet Ali,https://fr.wikipedia.org/wiki/Dynastie_de_M%C3%A9h%C3%A9met_Ali,Afrique du Nord,1914,1951,True
+Dynastie Senussi,https://fr.wikipedia.org/wiki/Famille_Al-Sanoussi,Afrique du Nord,1951,1969,True
+Pays de Pount,https://fr.wikipedia.org/wiki/Pays_de_Pount,Afrique de l'Est,2400 av. J.-C.,1069 av. J.-C.,True
+Royaume de D'mt,https://fr.wikipedia.org/wiki/D'mt,Afrique de l'Est,980 av. J.-C.,400 av. J.-C.,True
+Royaume d'Aksoum,https://fr.wikipedia.org/wiki/Royaume_d'Aksoum,Afrique de l'Est,50 apr. J.-C.,937 apr. J.-C.,True
+Sultanat de Mogadiscio,https://fr.wikipedia.org/wiki/Sultanat_de_Mogadiscio,Afrique de l'Est,Xe siècle,XVIe siècle,True
+Sultanat de Kilwa,https://fr.wikipedia.org/wiki/Sultanat_de_Kilwa,Afrique de l'Est,960,1513,True
+Empire éthiopien,https://fr.wikipedia.org/wiki/Empire_éthiopien,Afrique de l'Est,1137,1974,True
+Royaume Dadjo,https://fr.wikipedia.org/wiki/Royaume_Dadjo,Afrique de l'Est,XIIe siècle,XVe siècle,True
+Royaume d'Alodie,https://fr.wikipedia.org/wiki/Royaume_d'Alodie,Afrique de l'Est,XIIe siècle,1504,True
+Sultanat d'Ifat,https://fr.wikipedia.org/wiki/Sultanat_d'Ifat,Afrique de l'Est,1285,1415,True
+Sultanat Warsangali,https://fr.wikipedia.org/wiki/Warsangali,Afrique de l'Est,1298,1886,True
+Royaume de Buganda,https://fr.wikipedia.org/wiki/Buganda,Afrique de l'Est,1300,N/A,True
+Royaume du Burundi,https://fr.wikipedia.org/wiki/Royaume_du_Burundi,Afrique de l'Est,1500,1966,True
+Royaume du Rwanda,https://fr.wikipedia.org/wiki/Royaume_du_Rwanda,Afrique de l'Est,1300,1959,True
+Sultanat Ajuran,https://fr.wikipedia.org/wiki/Sultanat_Ajuran,Afrique de l'Est,XIVe siècle,XVIIe siècle,True
+Sultanat d'Adal,https://fr.wikipedia.org/wiki/Sultanat_d'Adal,Afrique de l'Est,1415,1555,True
+Empire du Kitara,https://fr.wikipedia.org/wiki/Empire_du_Kitara,Afrique de l'Est,1300,,True
+Sultanat du Geledi,https://fr.wikipedia.org/wiki/Sultanat_Geledi,Afrique de l'Est,fin du XVIIe siècle,fin du XIXe siècle,True
+Premier Sultanat du Darfour,https://fr.wikipedia.org/wiki/Sultanat_du_Darfour,Afrique de l'Est,1603,1874,True
+Sultanat d'Aussa,https://fr.wikipedia.org/wiki/Awsa,Afrique de l'Est,1734,1936,True
+Royaume de Gomma,https://fr.wikipedia.org/wiki/Royaume_de_Gomma,Afrique de l'Est,début du XIXe siècle,1886,True
+Royaume de Jimma,https://fr.wikipedia.org/wiki/Royaume_de_Jimma,Afrique de l'Est,1830,1932,True
+Royaume de Gumma,https://fr.wikipedia.org/wiki/Royaume_de_Gumma,Afrique de l'Est,1840,1902,True
+Sultanat d'Hobyo,https://fr.wikipedia.org/wiki/Sultanat_d'Hobyo,Afrique de l'Est,1880,années 1920,True
+Soudan mahdiste,https://fr.wikipedia.org/wiki/Soudan_mahdiste,Afrique de l'Est,1885,1889,True
+Derviches Dhulbahante,https://fr.wikipedia.org/wiki/Derviches_(Dhulbahante),Afrique de l'Est,1896,1920,True
+Second Sultanat du Darfour,https://fr.wikipedia.org/wiki/Sultanat_du_Darfour,Afrique de l'Est,1898,1916,True
+Civilisation nok,https://fr.wikipedia.org/wiki/Nok_(culture),Afrique de l'Ouest,1250 av. J.-C.,250 av. J.-C.,True
+Empire du Ghana,https://fr.wikipedia.org/wiki/Empire_du_Ghana,Afrique de l'Ouest,300 apr. J.-C.,1200 apr. J.-C.,True
+Royaume du Fouta-Toro,https://fr.wikipedia.org/wiki/Royaume_du_Fouta-Toro,Afrique de l'Ouest,1512,1890,True
+Royaume de Nri,https://fr.wikipedia.org/wiki/Royaume_de_Nri,Afrique de l'Ouest,948,1911,True
+Bonoman,https://fr.wikipedia.org/wiki/Royaume_de_Bono,Afrique de l'Ouest,XIe siècle,XIXe siècle,True
+Tekrour,https://fr.wikipedia.org/wiki/Tekrour,Afrique de l'Ouest,Ve siècle,XIIIe siècle,False
+Royaume du Bénin,https://fr.wikipedia.org/wiki/Royaume_du_Bénin,Afrique de l'Ouest,1180,1897,True
+Empire d'Ife,https://fr.wikipedia.org/wiki/Empire_d'Ife,Afrique de l'Ouest,1200,1420,True
+Empire du Mali,https://fr.wikipedia.org/wiki/Empire_du_Mali,Afrique de l'Ouest,1235,1600,True
+Waalo,https://fr.wikipedia.org/wiki/Waalo,Afrique de l'Ouest,1287,1855,True
+Djolof,https://fr.wikipedia.org/wiki/Empire_du_Djolof,Afrique de l'Ouest,1350,1549,True
+Empire Wolof,https://fr.wikipedia.org/wiki/Empire_du_Djolof,Afrique de l'Ouest,1350,1889,True
+Royaume du Sine,https://fr.wikipedia.org/wiki/Royaume_du_Sine,Afrique de l'Ouest,1350,1969,True
+Royaume du Kanem-Bornou,https://fr.wikipedia.org/wiki/Royaume_du_Kanem-Bornou,Afrique de l'Ouest,1380,1893,True
+Royaume de Dagomba,https://fr.wikipedia.org/wiki/Royaume_de_Dagomba,Afrique de l'Ouest,1409,N/A,True
+Empire songhaï,https://fr.wikipedia.org/wiki/Empire_songhaï,Afrique de l'Ouest,1464,1591,True
+Royaume shilluk,https://fr.wikipedia.org/wiki/Shilluk_(monarchie),Afrique de l'Ouest,1490,1865,True
+Royaume du Saloum,https://fr.wikipedia.org/wiki/Royaume_du_Saloum,Afrique de l'Ouest,1493,1969,True
+Royaume du Cayor,https://fr.wikipedia.org/wiki/Royaume_du_Cayor,Afrique de l'Ouest,1549,1886,True
+Royaume du Baol,https://fr.wikipedia.org/wiki/Royaume_du_Baol,Afrique de l'Ouest,1549,1894,True
+Fouta-Toro (Denianké),https://fr.wikipedia.org/wiki/Royaume_du_Fouta-Toro,Afrique de l'Ouest,1490,1776,True
+Kaabunké,https://fr.wikipedia.org/wiki/Kaabu,Afrique de l'Ouest,1537,1867,True
+Royaume bambara de Ségou,https://fr.wikipedia.org/wiki/Royaume_bambara_de_Ségou,Afrique de l'Ouest,1712,1861,True
+Califat de Sokoto,https://fr.wikipedia.org/wiki/Empire_de_Sokoto,Afrique de l'Ouest,1804,1904,True
+Royaume du Dahomey,https://fr.wikipedia.org/wiki/Royaume_du_Dahomey,Afrique de l'Ouest,1600,1900,True
+Empire ashanti,https://fr.wikipedia.org/wiki/Empire_ashanti,Afrique de l'Ouest,1701,1894,True
+Royaumes Mossi,https://fr.wikipedia.org/wiki/Royaume_mossi,Afrique de l'Ouest,XIe siècle,1896,False
+Empire kong,https://fr.wikipedia.org/wiki/Empire_kong,Afrique de l'Ouest,1710,1894,True
+Empire wassoulou,https://fr.wikipedia.org/wiki/Empire_wassoulou,Afrique de l'Ouest,1878,1898,True
+Empire d'Oyo,https://fr.wikipedia.org/wiki/Empire_d'Oyo,Afrique de l'Ouest,1400,1895,True
+Confédération aro,https://fr.wikipedia.org/wiki/Aro_(peuple),Afrique de l'Ouest,1690,1902,True
+Royaume de Djanglanmey,https://fr.wikipedia.org/wiki/Djanglanmey,Afrique de l'Ouest,1700,1900,True
+Royaume du Kénédougou,https://fr.wikipedia.org/wiki/Royaume_du_Kénédougou,Afrique de l'Ouest,1845,1898,True
+Empire toucouleur,https://fr.wikipedia.org/wiki/Empire_toucouleur,Afrique de l'Ouest,1848,1893,True
+Empire du Macina,https://fr.wikipedia.org/wiki/Empire_du_Macina,Afrique de l'Ouest,1818,1862,True
+Imamat du Fouta-Djalon,https://fr.wikipedia.org/wiki/Imamat_du_Fouta-Djalon,Afrique de l'Ouest,1490,1896,True
+Royaumes haoussa,https://fr.wikipedia.org/wiki/Royaumes_haoussa,Afrique de l'Ouest,XIe siècle,1804,True
+Civilisation Sao,https://fr.wikipedia.org/wiki/Sao_(civilisation),Afrique centrale,VIe siècle av. J.-C.,XVIe siècle apr. J.-C.,True
+Royaume de La'djo (Bandjoun),https://fr.wikipedia.org/wiki/Royaume_de_Bandjoun,Afrique centrale,XVIIe siècle,1925,True
+Royaume du Kanem-Bornou,https://fr.wikipedia.org/wiki/Royaume_du_Kanem-Bornou,Afrique centrale,IXe siècle,1900,True
+Royaume du Kongo,https://fr.wikipedia.org/wiki/Royaume_du_Kongo,Afrique centrale,853,1888,True
+Royaume du Baguirmi,https://fr.wikipedia.org/wiki/Royaume_du_Baguirmi,Afrique centrale,1522,1897,True
+Empire luba,https://fr.wikipedia.org/wiki/Empire_luba,Afrique centrale,1585,1885,True
+Royaume de Ndongo,https://fr.wikipedia.org/wiki/Royaume_de_Ndongo,Afrique centrale,XVIe siècle,?,True
+Royaume de Matamba,https://fr.wikipedia.org/wiki/Royaume_de_Matamba,Afrique centrale,1631,1744,True
+Royaume du Ouaddaï,https://fr.wikipedia.org/wiki/Royaume_du_Ouaddaï,Afrique centrale,1635,1912,True
+Royaume Lunda,https://fr.wikipedia.org/wiki/Royaume_Lunda,Afrique centrale,1665,1887,True
+Royaume Kuba,https://fr.wikipedia.org/wiki/Royaume_Kuba,Afrique centrale,1600,N/A,True
+Mapungubwe,https://fr.wikipedia.org/wiki/Mapungubwe,Afrique australe,IXe siècle,XIVe siècle,False
+Royaume du Zimbabwe,https://fr.wikipedia.org/wiki/Grand_Zimbabwe,Afrique australe,1220,1450,True
+Royaume du Monomotapa,https://fr.wikipedia.org/wiki/Empire_du_Monomotapa,Afrique australe,1430/1450,1629/1760,True
+Royaume de Butua,https://fr.wikipedia.org/wiki/Royaume_de_Butua,Afrique australe,1450,1683,True
+Royaume Maravi,https://fr.wikipedia.org/wiki/Maravi,Afrique australe,1480,1891,True
+Empire lozi,https://fr.wikipedia.org/wiki/Barotseland,Afrique australe,1550,1838,True
+Royaumes Ovambos,https://fr.wikipedia.org/wiki/Ovambos,Afrique australe,1550,1900,True
+Empire rozvi,https://fr.wikipedia.org/wiki/Empire_rozvi,Afrique australe,1660/1684,1866,True
+Royaume de Madagascar,https://fr.wikipedia.org/wiki/Royaume_de_Madagascar,Afrique australe,1540/1740,1896,True
+Royaumes tswanas,https://fr.wikipedia.org/wiki/Tswana_(peuple),Afrique australe,1750,1885/présent,True
+Royaume thembu,https://fr.wikipedia.org/wiki/Thembu,Afrique australe,?,1885/présent,True
+Confédération Mthethwa,https://fr.wikipedia.org/wiki/Mthethwa,Afrique australe,1770/1780,1817/1820,True
+Royaume xhosa,https://fr.wikipedia.org/wiki/Xhosa_(peuple),Afrique australe,1775,1885/présent,True
+Royaume Ndwandwe,https://fr.wikipedia.org/wiki/Ndwandwe,Afrique australe,1780,1819/1825,True
+Royaume Hlubi,https://fr.wikipedia.org/wiki/Hlubi,Afrique australe,1300/1780/1800,présent,True
+Royaumes kavango,https://fr.wikipedia.org/wiki/Kavangos,Afrique australe,1785,présent,True
+Royaume zoulou,https://fr.wikipedia.org/wiki/Royaume_zoulou,Afrique australe,1816,1897,True
+Royaume du Lesotho,https://fr.wikipedia.org/wiki/Lesotho,Afrique australe,1822,présent,True
+Royaume Mthwakazi/Ndébélé,https://fr.wikipedia.org/wiki/Ndébélés,Afrique australe,1823,1894,True
+Royaume de Gaza,https://fr.wikipedia.org/wiki/Royaume_de_Gaza,Afrique australe,1824,1895,True
+Royaumes Gricquas,https://fr.wikipedia.org/wiki/Griquas,Afrique australe,1826,1890,True
+Royaume Eswatini,https://fr.wikipedia.org/wiki/Eswatini,Afrique australe,1840,présent,True
