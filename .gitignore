@@ -1,1 +1,6 @@
 wikipedia_pages
+config.yml
+mlruns/
+__pycache__/
+.venv/
+.idea/
