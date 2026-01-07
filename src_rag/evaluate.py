@@ -1,7 +1,6 @@
 from pathlib import Path
 import mlflow
 import numpy as np
-import os
 import pandas as pd
 from sentence_transformers import SentenceTransformer
 from sklearn.metrics.pairwise import cosine_similarity
@@ -11,24 +10,29 @@ import yaml
 
 from src_rag import models
 
-from FlagEmbedding import FlagModel
+ROOT = Path(__file__).resolve().parents[1]
+CONF = yaml.safe_load(open(ROOT / "config.yml"))
 
-CONF = yaml.safe_load(open("config.yml"))
-
-FOLDER = Path("data") / "raw" / "wikipedia_pages"
+FOLDER = ROOT / "data" / "raw" / "movies" / "wiki"
 FILENAMES = [
-    FOLDER / title for title in ["Inception.md", "The Dark Knight.md", "Deadpool.md", "Fight Club.md", "Pulp Fiction.md"]
+    FOLDER / title for title in [
+        "Inception.md",
+        "The Dark Knight.md",
+        "Deadpool.md",
+        "Fight Club.md",
+        "Pulp Fiction.md",
+    ]
 ]
-DF = pd.read_csv("data/raw/questions.csv", sep=";") 
+DF = pd.read_csv(ROOT / "data/raw/movies/questions.csv", sep=";")
+ENCODER = SentenceTransformer("all-MiniLM-L6-v2")
 
-ENCODER = SentenceTransformer('all-MiniLM-L6-v2')
 
-£
 def _load_ml_flow(conf):
-    mlflow.set_experiment("RAG_civilisations_africaines_precoloniales")
+    mlflow.set_experiment("RAG_Movies_clean")
 
 
 _load_ml_flow(CONF)
+
 
 def run_evaluate_retrieval(config, rag=None):
     rag = rag or models.get_model(config)
@@ -36,7 +40,7 @@ def run_evaluate_retrieval(config, rag=None):
 
     description = str(config.get("model", {}))
     _push_mlflow_result(score, config, description)
-    
+
     return rag
 
 
@@ -45,9 +49,9 @@ def run_evaluate_reply(config, rag=None):
     indexes = range(2, len(DF), 10)
     score = evaluate_reply(rag, FILENAMES, DF.iloc[indexes])
 
-    description = str(config["model"])
+    description = str(config.get("model", {}))
     _push_mlflow_result(score, config, description)
-    
+
     return rag
 
 
@@ -70,12 +74,15 @@ def evaluate_reply(rag, filenames, df):
     replies = []
     for question in tqdm(df["question"]):
         replies.append(rag.reply(question))
-        # Not to many requests to groq
+        # Not too many requests to groq
         sleep(2)
 
     df["reply"] = replies
-    df["sim"] = df.apply(lambda row: calc_semantic_similarity(row["reply"], row["expected_reply"]), axis=1)
-    df["is_correct"] = df["sim"] > .7
+    df["sim"] = df.apply(
+        lambda row: calc_semantic_similarity(row["reply"], row["expected_reply"]),
+        axis=1,
+    )
+    df["is_correct"] = df["sim"] > 0.7
 
     return {
         "reply_similarity": df["sim"].mean(),
@@ -87,32 +94,30 @@ def evaluate_reply(rag, filenames, df):
 def evaluate_retrieval(rag, filenames, df_question):
     rag.load_files(filenames)
     ranks = []
-    for _, row  in df_question.iterrows():
-        # For each question, get the 5 most relevant chunks 
+    for _, row in df_question.iterrows():
+        # For each question, get the 5 most relevant chunks
         chunks = rag._get_context(row.question)
         try:
             # Find the rank of the chunk containing the answer based on text_answering column
             rank = next(i for i, c in enumerate(chunks) if row.text_answering in c)
         except StopIteration:
             rank = 0
-        # append rank if correct chunk found, else 0
         ranks.append(rank)
-        
+
     df_question["rank"] = ranks
-    # Higer is the rank, worst is the score (meaning simscore not accurate enough?) but a mean is computen to flatten results
     mrr = np.mean([0 if r == 0 else 1 / r for r in ranks])
 
     return {
         "mrr": mrr,
         "nb_chunks": len(rag.get_chunks()),
-        "df_result": df_question[["question", "text_answering", "rank"]],
+        "df_result": df_question[["question", "text_answering", "rank"]]
     }
 
 
 def calc_acceptable_chunks(chunks, text_to_find):
     acceptable_chunks = []
     for answer in text_to_find:
-        chunks_ok = set(i for i, chunk in enumerate(chunks) if answer in chunk)
+        chunks_ok = set[int](i for i, chunk in enumerate(chunks) if answer in chunk)
         acceptable_chunks.append(chunks_ok)
 
     return acceptable_chunks
@@ -126,9 +131,9 @@ def calc_mrr(sim_score, acceptable_chunks, top_n=5):
             rank = 1 + next(i for i, idx in enumerate(indexes) if idx in this_acceptable_chunks)
         except StopIteration:
             rank = len(this_score) + 1
-        
+
         ranks.append(rank)
-        
+
     return {
         "mrr": sum(1 / r if r < top_n + 1 else 0 for r in ranks) / len(ranks),
         "ranks": ranks,
@@ -138,15 +143,7 @@ def calc_mrr(sim_score, acceptable_chunks, top_n=5):
 def calc_semantic_similarity(generated_answer: str, reference_answer: str) -> float:
     """
     Calculate semantic similarity between generated and reference answers.
-    
-    Args:
-        generated_answer: The answer produced by the RAG system
-        reference_answer: The expected or ground-truth answer
-        
-    Returns:
-        Cosine similarity score between 0 and 1
     """
-    # Generate embeddings for both texts
     embeddings = ENCODER.encode([generated_answer, reference_answer])
     generated_embedding = embeddings[0].reshape(1, -1)
     reference_embedding = embeddings[1].reshape(1, -1)
@@ -155,7 +152,6 @@ def calc_semantic_similarity(generated_answer: str, reference_answer: str) -> fl
 
 
 if __name__ == "__main__":
-    model_config = {"chunk_size": 512}
+    model_config = {"chunk_size": 512, "overlap": 0}
     # run_evaluate_retrieval({"model": model_config})
     run_evaluate_reply({"model": model_config})
-
