@@ -1,25 +1,111 @@
-import numpy as np
+import os
 import re
+from pathlib import Path
+from typing import List, Dict, Any, Optional, Tuple
+
+import numpy as np
 import tiktoken
 import openai
 import yaml
-from pathlib import Path
-from typing import List, Dict, Any, Optional
-
 from sentence_transformers import SentenceTransformer
 
 # ---------------------------
 # Config / Groq
 # ---------------------------
 ROOT = Path(__file__).resolve().parents[1]
-CONF = yaml.safe_load(open(ROOT / "config.yml", encoding="utf-8"))
+CONF_PATH = ROOT / "config.yml"
+CONF = yaml.safe_load(open(CONF_PATH, encoding="utf-8")) if CONF_PATH.exists() else {}
+
+# ✅ Priorité à la variable d'environnement (PyCharm / Conda)
+# puis fallback sur config.yml (clé "groq_key")
+GROQ_API_KEY = (
+        os.getenv("GROQ_API_KEY")
+        or os.getenv("GROQ_KEY")
+        or (CONF.get("groq_key") if isinstance(CONF, dict) else None)
+)
+
+if not GROQ_API_KEY:
+    raise ValueError(
+        "Clé Groq introuvable. Définis GROQ_API_KEY dans tes variables d'environnement "
+        "ou ajoute 'groq_key:' dans config.yml."
+    )
 
 CLIENT = openai.OpenAI(
     base_url="https://api.groq.com/openai/v1",
-    api_key=CONF["groq_key"],
+    api_key=GROQ_API_KEY,
 )
 
 tokenizer = tiktoken.get_encoding("cl100k_base")
+
+
+# ---------------------------
+# Wikipedia TXT parsing utils
+# ---------------------------
+def parse_wikipedia_txt(raw_text: str, filename: Optional[Path] = None) -> Tuple[str, Dict[str, str]]:
+    """
+    Parse les fichiers txt Wikipédia de ton format :
+
+    Entity: ...
+    Wikipedia Title: ...
+    URL: ...
+    Region: ...
+    Period: ...
+    ===========================
+    <contenu...>
+
+    Retourne:
+      - content_text : le texte après la ligne de ======
+      - meta : dict avec les champs extraits (entity, title, url, region, period + autres)
+    """
+    text = raw_text or ""
+    lines = text.splitlines()
+
+    # Trouver la 1ère ligne séparateur (>= 5 '=')
+    sep_idx = None
+    sep_re = re.compile(r"^\s*={5,}\s*$")
+    for i, line in enumerate(lines):
+        if sep_re.match(line):
+            sep_idx = i
+            break
+
+    # Si pas de séparateur, on considère tout comme contenu
+    if sep_idx is None:
+        return text, {}
+
+    header_lines = lines[:sep_idx]
+    content_lines = lines[sep_idx + 1:]
+
+    meta: Dict[str, str] = {}
+    kv_re = re.compile(r"^\s*([^:]{1,80})\s*:\s*(.*)\s*$")
+
+    for line in header_lines:
+        line = line.strip()
+        if not line:
+            continue
+        m = kv_re.match(line)
+        if m:
+            k = m.group(1).strip()
+            v = m.group(2).strip()
+            meta[k] = v
+
+    # Normalisation des clés "connues"
+    normalized = {}
+    key_map = {
+        "Entity": "entity",
+        "Wikipedia Title": "title",
+        "URL": "url",
+        "Region": "region",
+        "Period": "period",
+    }
+    for k, v in meta.items():
+        normalized[key_map.get(k, k)] = v
+
+    content_text = "\n".join(content_lines).strip()
+    # sécurité: si contenu vide, fallback sur raw_text
+    if not content_text:
+        content_text = text
+
+    return content_text, normalized
 
 
 def _guess_title(text: str, filename: Path) -> str:
@@ -94,18 +180,36 @@ class RAG:
             if filename in self._loaded_files:
                 continue
 
+            p = Path(filename)
+
             with open(filename, "r", encoding="utf-8", errors="ignore") as f:
-                txt = f.read()
+                raw_txt = f.read()
+
+            # ✅ Nettoyage + meta wikipedia si présent
+            cleaned_txt, meta = parse_wikipedia_txt(raw_txt, p)
 
             self._loaded_files.add(filename)
-            self._texts.append(txt)
+            self._texts.append(cleaned_txt)
 
-            title = _guess_title(txt, Path(filename))
-            meta_prefix = f"[SOURCE: {Path(filename).name}] [TITLE: {title}]\n"
+            # ✅ titre prioritaire: meta["title"] si dispo
+            title = meta.get("title") or _guess_title(cleaned_txt, p)
+
+            # ✅ meta_prefix enrichi
+            meta_bits = [f"[SOURCE: {p.name}]", f"[TITLE: {title}]"]
+            if meta.get("entity"):
+                meta_bits.append(f"[ENTITY: {meta['entity']}]")
+            if meta.get("region"):
+                meta_bits.append(f"[REGION: {meta['region']}]")
+            if meta.get("period"):
+                meta_bits.append(f"[PERIOD: {meta['period']}]")
+            if meta.get("url"):
+                meta_bits.append(f"[URL: {meta['url']}]")
+
+            meta_prefix = " ".join(meta_bits) + "\n"
 
             # chunks du document, préfixés par les meta
             chunks_added = chunk_markdown(
-                txt,
+                cleaned_txt,
                 chunk_size=self._chunk_size,
                 overlap=self._overlap,
                 meta_prefix=meta_prefix,
@@ -181,29 +285,39 @@ class RAG:
             return []
 
         q = self.embed_questions([query])  # (1, d)
-        scores = q @ self._corpus_embedding.T  # (1, N) car embeddings normalisés => cosine
+        scores = (q @ self._corpus_embedding.T)[0]  # (N,)
 
         if not self._small2big:
-            # Top-k chunks
-            idxs = np.argsort(scores[0])[-self._top_k:]
-            idxs = idxs.tolist()
-            return [self._chunks[i] for i in idxs]
+            # ✅ Top-k du MEILLEUR au MOINS BON
+            idxs = np.argsort(scores)[::-1][: self._top_k]
+            return [self._chunks[int(i)] for i in idxs]
 
-        # small2big: prend plus de petits chunks, fusionne ceux contigus
-        idxs = np.argsort(scores[0])[-self._top_k_small:]
-        idxs = sorted(idxs.tolist())
+        # -------------------------
+        # small2big: prendre plus de petits chunks, fusionner contigus
+        # MAIS retourner les groupes par score décroissant
+        # -------------------------
+        top_small = np.argsort(scores)[::-1][: self._top_k_small]  # top scores (ranked)
+        pos_sorted = sorted(int(i) for i in top_small)  # tri par position pour fusionner
 
-        merged = []
-        group = [idxs[0]]
-        for idx in idxs[1:]:
+        groups = []
+        group = [pos_sorted[0]]
+        for idx in pos_sorted[1:]:
             if idx == group[-1] + 1:
                 group.append(idx)
             else:
-                merged.append("\n".join(self._chunks[i] for i in group))
+                groups.append(group)
                 group = [idx]
-        merged.append("\n".join(self._chunks[i] for i in group))
+        groups.append(group)
 
-        return merged[: self._top_k]
+        # ✅ scorer chaque groupe (max score des chunks du groupe) puis trier
+        scored_groups = []
+        for g in groups:
+            g_score = float(max(scores[i] for i in g))
+            g_text = "\n".join(self._chunks[i] for i in g)
+            scored_groups.append((g_score, g_text))
+
+        scored_groups.sort(key=lambda x: x[0], reverse=True)
+        return [t for _, t in scored_groups[: self._top_k]]
 
     # ---------------------------
     # LLM Answer (Groq)

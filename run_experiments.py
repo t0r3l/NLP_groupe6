@@ -4,10 +4,40 @@ from __future__ import annotations
 import os
 import traceback
 from typing import Any, Dict, List, Tuple
-
+import re
 import mlflow
 from src_rag import evaluate as eval_mod
 from src_rag import models
+
+
+# -----------------------------
+# (Optionnel) Ping Groq (ne doit PAS bloquer le script)
+# -----------------------------
+def _optional_ping_groq() -> None:
+    """
+    Petit test réseau/API pour vérifier que la clé fonctionne.
+    Ne doit JAMAIS faire crasher run_experiments.
+    """
+    try:
+        from openai import OpenAI
+
+        api_key = os.getenv("GROQ_API_KEY", "")
+        if not api_key:
+            print("⚠️ GROQ_API_KEY absent -> ping skipped")
+            return
+
+        client = OpenAI(base_url="https://api.groq.com/openai/v1", api_key=api_key)
+
+        # Modèle supporté (remplace llama3-8b-8192 décommissionné)
+        ping_model = os.getenv("GROQ_PING_MODEL", "llama-3.1-8b-instant")
+
+        resp = client.chat.completions.create(
+            model=ping_model,
+            messages=[{"role": "user", "content": "ping"}],
+        )
+        print(f"✅ Groq ping OK ({ping_model}) ->", resp.choices[0].message.content)
+    except Exception as e:
+        print("⚠️ Groq ping failed (non-bloquant):", e)
 
 
 # -----------------------------
@@ -22,6 +52,13 @@ def _flatten_dict(d: Dict[str, Any], prefix: str = "") -> Dict[str, Any]:
         else:
             out[key] = v
     return out
+
+
+def _mlflow_safe_name(name: str) -> str:
+    # Ex: hit@1 -> hit_at_1 (plus lisible que hit_1)
+    name = name.replace("@", "_at_")
+    # Remplacer tout caractère interdit par "_"
+    return re.sub(r"[^0-9A-Za-z_\-\. /]", "_", name)
 
 
 def _log_run(stage: str, score: Dict[str, Any], config: Dict[str, Any]) -> None:
@@ -49,7 +86,7 @@ def _log_run(stage: str, score: Dict[str, Any], config: Dict[str, Any]) -> None:
 
         for k, v in score.items():
             if isinstance(v, (int, float)):
-                mlflow.log_metric(k, float(v))
+                mlflow.log_metric(_mlflow_safe_name(k), float(v))
 
         if df is not None:
             try:
@@ -71,23 +108,18 @@ def _run_retrieval_once(model_cfg: Dict[str, Any]) -> Tuple[float, int]:
 def _run_reply_once(model_cfg: Dict[str, Any]) -> Tuple[float, float]:
     config = {"model": model_cfg}
     rag = models.get_model(config)
-
-    # DF petit (~10) => on évalue tout
     score = eval_mod.evaluate_reply(rag, eval_mod.FILENAMES, eval_mod.DF.dropna().copy())
-
     _log_run(stage="reply", score=score, config=config)
     return float(score["reply_similarity"]), float(score["percent_correct"])
 
 
 def _overlaps_for(chunk_size: int) -> List[int]:
-    # overlap capé à 64 pour ne pas exploser nb_chunks
     cand = {
         0,
         max(0, chunk_size // 16),
         max(0, chunk_size // 8),
         min(64, max(0, chunk_size // 4)),
     }
-    # garder uniquement < chunk_size
     return sorted([x for x in cand if x < chunk_size])
 
 
@@ -95,35 +127,26 @@ def _overlaps_for(chunk_size: int) -> List[int]:
 # MAIN
 # -----------------------------
 def main():
-    # IMPORTANT : lance MLflow UI depuis la racine du projet
+    # (Optionnel) test clé + API (non bloquant)
+    _optional_ping_groq()
+    print("MLFLOW_TRACKING_URI =", mlflow.get_tracking_uri())
+
     experiment_name = os.getenv("MLFLOW_EXPERIMENT", "RAG_Civilisations_MRR")
     mlflow.set_experiment(experiment_name)
 
-    # ---------- Embeddings (priorité FR / multilingual)
-    # On passe des noms HF COMPLETS : ton models.py accepte ça (fallback).
     embeddings = [
-        "sentence-transformers/paraphrase-multilingual-mpnet-base-v2",  # souvent top en FR
-        "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2",  # plus léger
-        "sentence-transformers/distiluse-base-multilingual-cased-v2",  # rapide / solide
+        "sentence-transformers/paraphrase-multilingual-mpnet-base-v2",
+        "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2",
+        "sentence-transformers/distiluse-base-multilingual-cased-v2",
     ]
 
-    # Optionnel : activer un embedding plus lourd (si tu veux tester)
-    # set INCLUDE_HEAVY=1
     include_heavy = os.getenv("INCLUDE_HEAVY", "0") == "1"
     if include_heavy:
-        embeddings += [
-            "BAAI/bge-m3",  # multilingue retrieval, plus lourd -> peut être plus lent en CPU
-        ]
+        embeddings += ["BAAI/bge-m3"]
 
-    # ---------- Chunk sizes (bons candidats pour MRR sur wiki)
-    # (petit/moyen = souvent mieux pour retrouver précisément text_answering)
     chunk_sizes = [192, 256, 384]
-
-    # ---------- small2big : on teste ON/OFF
     small2big_opts = [False, True]
 
-    # ---------- PHASE 1 : COARSE (MRR d’abord)
-    # overlap fixé = chunk_size//8 (bon point de départ)
     coarse_candidates: List[Dict[str, Any]] = []
     for emb in embeddings:
         for cs in chunk_sizes:
@@ -149,18 +172,16 @@ def main():
         print("\nAucun run retrieval n'a réussi. Vérifie evaluate.py (paths) + dépendances.")
         return
 
-    # Trie : MRR décroissant, et si égalité -> moins de chunks (souvent mieux)
     results.sort(key=lambda x: (x[0], -x[1]), reverse=True)
 
-    top_k_refine = int(os.getenv("TOPK_REFINE", "2"))  # ✅ par défaut : 2 pour limiter le coût
-    top_k_reply = int(os.getenv("TOPK_REPLY", "3"))  # reply uniquement sur top 3
+    top_k_refine = int(os.getenv("TOPK_REFINE", "2"))
+    top_k_reply = int(os.getenv("TOPK_REPLY", "3"))
 
     best_coarse = results[:top_k_refine]
     print("\n[TOP COARSE]")
     for rank, (mrr, nb_chunks, cfg) in enumerate(best_coarse, start=1):
         print(f"  {rank}) mrr={mrr:.4f} nb_chunks={nb_chunks} cfg={cfg}")
 
-    # ---------- PHASE 2 : REFINE (MRR)
     refine_candidates: List[Dict[str, Any]] = []
     for _, _, base_cfg in best_coarse:
         cs = base_cfg["chunk_size"]
@@ -171,7 +192,6 @@ def main():
                     {"embedding": emb, "chunk_size": cs, "overlap": ov, "small2big": s2b}
                 )
 
-    # dédoublonnage
     uniq, seen = [], set()
     for c in refine_candidates:
         key = (c["embedding"], c["chunk_size"], c["overlap"], c["small2big"])
@@ -181,7 +201,7 @@ def main():
     refine_candidates = uniq
 
     refine_results: List[Tuple[float, int, Dict[str, Any]]] = []
-    print(f"\n[PHASE 2] Refine MRR: {len(refine_candidates)} runs (around TOP {top_k_refine})")
+    print(f"\n[PHASE 2] Refine MRR: {len(refine_candidates)} runs")
     for i, cfg in enumerate(refine_candidates, start=1):
         try:
             print(f"  - ({i}/{len(refine_candidates)}) {cfg}")
@@ -199,7 +219,6 @@ def main():
     for rank, (mrr, nb_chunks, cfg) in enumerate(all_results[:10], start=1):
         print(f"  {rank}) mrr={mrr:.4f} nb_chunks={nb_chunks} cfg={cfg}")
 
-    # ---------- PHASE 3 : REPLY (seulement sur les meilleurs)
     print(f"\n[PHASE 3] Reply eval on TOP {top_k_reply} configs")
     for i, (mrr, nb_chunks, cfg) in enumerate(all_results[:top_k_reply], start=1):
         try:
