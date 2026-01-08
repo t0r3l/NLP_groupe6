@@ -1,0 +1,5 @@
+chunk_size,small2big,nb_chunks,mrr
+128,True,355,0.25
+256,True,211,0.55
+512,True,153,0.47000000000000003
+1024,True,131,0.525

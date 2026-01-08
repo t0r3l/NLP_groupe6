@@ -1,0 +1,5 @@
+chunk_size,overlap,add_metadata,nb_chunks,mrr
+128,12,True,369,0.08
+256,25,True,217,0.15833333333333333
+512,51,True,153,0.1
+1024,102,True,131,0.1

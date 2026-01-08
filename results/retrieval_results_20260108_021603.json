@@ -1,0 +1,107 @@
+{
+  "best_embedding": "miniLM",
+  "test2_chunk_sizes": [
+    {
+      "chunk_size": 128,
+      "nb_chunks": 355,
+      "mrr": 0.065
+    },
+    {
+      "chunk_size": 256,
+      "nb_chunks": 211,
+      "mrr": 0.10500000000000001
+    },
+    {
+      "chunk_size": 512,
+      "nb_chunks": 153,
+      "mrr": 0.205
+    },
+    {
+      "chunk_size": 1024,
+      "nb_chunks": 131,
+      "mrr": 0.15
+    }
+  ],
+  "test3_overlap": [
+    {
+      "chunk_size": 128,
+      "overlap": 12,
+      "nb_chunks": 369,
+      "mrr": 0.13999999999999999
+    },
+    {
+      "chunk_size": 256,
+      "overlap": 25,
+      "nb_chunks": 217,
+      "mrr": 0.21999999999999997
+    },
+    {
+      "chunk_size": 512,
+      "overlap": 51,
+      "nb_chunks": 153,
+      "mrr": 0.15
+    },
+    {
+      "chunk_size": 1024,
+      "overlap": 102,
+      "nb_chunks": 131,
+      "mrr": 0.15
+    }
+  ],
+  "test4_small2big": [
+    {
+      "chunk_size": 128,
+      "small2big": true,
+      "nb_chunks": 355,
+      "mrr": 0.25
+    },
+    {
+      "chunk_size": 256,
+      "small2big": true,
+      "nb_chunks": 211,
+      "mrr": 0.55
+    },
+    {
+      "chunk_size": 512,
+      "small2big": true,
+      "nb_chunks": 153,
+      "mrr": 0.47000000000000003
+    },
+    {
+      "chunk_size": 1024,
+      "small2big": true,
+      "nb_chunks": 131,
+      "mrr": 0.525
+    }
+  ],
+  "test5_metadata": [
+    {
+      "chunk_size": 128,
+      "overlap": 12,
+      "add_metadata": true,
+      "nb_chunks": 369,
+      "mrr": 0.08
+    },
+    {
+      "chunk_size": 256,
+      "overlap": 25,
+      "add_metadata": true,
+      "nb_chunks": 217,
+      "mrr": 0.15833333333333333
+    },
+    {
+      "chunk_size": 512,
+      "overlap": 51,
+      "add_metadata": true,
+      "nb_chunks": 153,
+      "mrr": 0.1
+    },
+    {
+      "chunk_size": 1024,
+      "overlap": 102,
+      "add_metadata": true,
+      "nb_chunks": 131,
+      "mrr": 0.1
+    }
+  ]
+}
