@@ -1,0 +1,14 @@
+artifact_uri: file:///home/torel/Projects/NLP/NLP_groupe6/mlruns/442184250301397762/f6e1c16d01c54036908e5e06e3d77aa1/artifacts
+end_time: 1767864845053
+entry_point_name: ''
+experiment_id: '442184250301397762'
+lifecycle_stage: active
+run_id: f6e1c16d01c54036908e5e06e3d77aa1
+run_name: test3_small2big_cs128
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1767864845045
+status: 3
+tags: []
+user_id: torel

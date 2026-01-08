@@ -4,6 +4,24 @@
 
 Ce rapport présente les résultats d'expérimentations sur un système RAG (Retrieval-Augmented Generation) appliqué à des données Wikipedia concernant les civilisations africaines précoloniales.
 
+## Corpus
+
+Notre corpus est constitué de **131 pages Wikipedia** sur les civilisations africaines précoloniales.
+
+| Métrique | Valeur |
+|----------|--------|
+| Nombre de pages | 131 |
+| Total tokens | 37,268 |
+| Moyenne | 284.5 tokens |
+| Médiane | 218.0 tokens |
+| Min | 30 tokens |
+| Max | 851 tokens |
+| Écart-type | 204.9 |
+
+Les pages sont relativement courtes (moyenne ~285 tokens), ce qui influence le choix des tailles de chunks optimales.
+
+---
+
 Pour évaluer les performances, nous utilisons:
 - **MRR (Mean Reciprocal Rank)** : mesure la qualité du retrieval (plus c'est élevé, mieux c'est)
 - **percent_correct** : pourcentage des réponses avec une similarité sémantique > 0.7 avec la réponse attendue

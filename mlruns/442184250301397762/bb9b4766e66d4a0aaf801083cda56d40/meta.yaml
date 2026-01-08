@@ -1,0 +1,14 @@
+artifact_uri: file:///home/torel/Projects/NLP/NLP_groupe6/mlruns/442184250301397762/bb9b4766e66d4a0aaf801083cda56d40/artifacts
+end_time: 1767864844919
+entry_point_name: ''
+experiment_id: '442184250301397762'
+lifecycle_stage: active
+run_id: bb9b4766e66d4a0aaf801083cda56d40
+run_name: test1_miniLM_cs256
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1767864844911
+status: 3
+tags: []
+user_id: torel

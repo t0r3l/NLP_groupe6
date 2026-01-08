@@ -1,0 +1,14 @@
+artifact_uri: file:///home/torel/Projects/NLP/NLP_groupe6/mlruns/442184250301397762/dd077290eb5e45aba4c655227c2a6131/artifacts
+end_time: 1767864845043
+entry_point_name: ''
+experiment_id: '442184250301397762'
+lifecycle_stage: active
+run_id: dd077290eb5e45aba4c655227c2a6131
+run_name: test2_overlap_cs512
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1767864845034
+status: 3
+tags: []
+user_id: torel

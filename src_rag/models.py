@@ -7,6 +7,7 @@ from pathlib import Path
 from typing import Optional, Tuple, Dict
 
 from sentence_transformers import SentenceTransformer
+from sklearn.metrics.pairwise import cosine_similarity
 
 ROOT = Path(__file__).resolve().parents[1]
 CONF = yaml.safe_load(open(ROOT / "config.yml"))
@@ -18,6 +19,36 @@ CLIENT = openai.OpenAI(
 
 tokenizer = tiktoken.get_encoding("cl100k_base")
 
+# Shared encoder for semantic similarity (lazy loaded)
+_SIMILARITY_ENCODER = None
+
+def get_similarity_encoder():
+    """Get or create the shared similarity encoder."""
+    global _SIMILARITY_ENCODER
+    if _SIMILARITY_ENCODER is None:
+        _SIMILARITY_ENCODER = SentenceTransformer("all-MiniLM-L6-v2")
+    return _SIMILARITY_ENCODER
+
+
+def calc_semantic_similarity(text1: str, text2: str) -> float:
+    """
+    Calculate semantic similarity between two texts.
+    
+    Args:
+        text1: First text
+        text2: Second text
+        
+    Returns:
+        Cosine similarity score between 0 and 1
+    """
+    encoder = get_similarity_encoder()
+    embeddings = encoder.encode([text1, text2])
+    similarity = cosine_similarity(
+        embeddings[0].reshape(1, -1),
+        embeddings[1].reshape(1, -1)
+    )[0][0]
+    return float(similarity)
+
 
 def get_model(config):
     if config:
@@ -27,7 +58,7 @@ def get_model(config):
 
 
 class RAG:
-    def __init__(self, chunk_size: int = 256, overlap: int = 0, small2big: bool = False, embedding: str = "miniLM", add_metadata: bool = False):
+    def __init__(self, chunk_size: int = 256, overlap: int = 0, small2big: bool = False, embedding: str = "miniLM", add_metadata: bool = False, enhance_query: bool = False):
         self._chunk_size = chunk_size
         if overlap > 0 and small2big:
             overlap = 0
@@ -42,6 +73,7 @@ class RAG:
         self._corpus_embedding: np.ndarray | None = None
         self._client = CLIENT
         self._add_metadata = add_metadata
+        self._enhance_query = enhance_query
 
     # ---------------------------
     # Chargement & chunks
@@ -171,17 +203,86 @@ class RAG:
         )
 
     # ---------------------------
+    # Query Enhancement
+    # ---------------------------
+    def enhance_query(self, query: str) -> str:
+        """
+        Enhance a query using LLM to improve retrieval.
+        
+        Generates a more detailed version of the query with:
+        - Key terms and synonyms
+        - Historical context
+        - Related concepts
+        
+        Args:
+            query: Original user question
+            
+        Returns:
+            Enhanced query for better retrieval
+        """
+        prompt = f"""Tu es un assistant spécialisé en histoire africaine. 
+Reformule et enrichis cette question pour améliorer la recherche documentaire.
+
+Ajoute des termes clés, synonymes et contexte historique pertinents.
+Garde la reformulation concise (max 2-3 phrases).
+
+Question originale: {query}
+
+Question enrichie:"""
+
+        try:
+            res = self._client.chat.completions.create(
+                messages=[{"role": "user", "content": prompt}],
+                model="openai/gpt-oss-20b",
+                max_tokens=150,
+            )
+            enhanced = res.choices[0].message.content.strip()
+            return enhanced
+        except Exception as e:
+            print(f"Query enhancement failed: {e}")
+            return query  # Fallback to original query
+
+    def set_enhance_query(self, enable: bool):
+        """Enable or disable query enhancement."""
+        self._enhance_query = enable
+
+    # ---------------------------
     # RAG : retrieval + LLM Groq
     # ---------------------------
-    def reply(self, query: str) -> str:
+    def reply(self, query: str, return_enhanced: bool = False) -> str | tuple[str, str]:
+        """
+        Generate a reply to the query.
+        
+        Args:
+            query: User question
+            return_enhanced: If True, also return the enhanced query used
+            
+        Returns:
+            Answer string, or tuple (answer, enhanced_query) if return_enhanced=True
+        """
+        # Get enhanced query if enabled (for returning to caller)
+        enhanced_query = self.enhance_query(query) if self._enhance_query else query
+        
+        # Build prompt (enhancement happens in _get_context)
         prompt = self._build_prompt(query)
         res = self._client.chat.completions.create(
             messages=[{"role": "user", "content": prompt}],
             model="openai/gpt-oss-20b",
         )
-        return res.choices[0].message.content
+        answer = res.choices[0].message.content
+        
+        if return_enhanced:
+            return answer, enhanced_query
+        return answer
 
     def _build_prompt(self, query: str) -> str:
+        """
+        Build the prompt for the LLM.
+        
+        Args:
+            query: Original user question
+        """
+        # Enhancement happens inside _get_context if enabled
         context_str = "\n".join(self._get_context(query))
 
         return f"""Context information is below.
@@ -193,10 +294,22 @@ If the answer is not in the context information, reply "I cannot answer that que
 Query: {query}
 Answer:"""
 
-    def _get_context(self, query: str) -> list[str]:
-        # 1) embed la question
-        query_embedding = self.embed_questions([query])  # (1, d)
-        # 2) scores de similarité avec tout le corpus
+    def _get_context(self, query: str, use_enhancement: bool = None) -> list[str]:
+        """
+        Retrieve relevant context chunks for a query.
+        
+        Args:
+            query: User question
+            use_enhancement: Override _enhance_query setting (None = use default)
+        """
+        # 1) Enhance query if enabled
+        should_enhance = use_enhancement if use_enhancement is not None else self._enhance_query
+        search_query = self.enhance_query(query) if should_enhance else query
+        
+        # 2) Embed the (possibly enhanced) query
+        query_embedding = self.embed_questions([search_query])  # (1, d)
+        
+        # 3) Similarity scores with corpus
         sim_scores = query_embedding @ self._corpus_embedding.T  # (1, N)
 
         if not self._small2big:
