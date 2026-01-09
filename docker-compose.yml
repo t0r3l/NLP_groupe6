@@ -1,0 +1,82 @@
+# =============================================================================
+# RAG Historian - Docker Compose Configuration
+# =============================================================================
+# Architecture:
+#   - 2 containers: streamlit-app, chromadb
+#   - 1 volume: chroma_data (persistent vector storage)
+#   - 2 networks: frontend (external access), backend (internal communication)
+# =============================================================================
+
+services:
+  # ---------------------------------------------------------------------------
+  # Streamlit Application - Frontend & RAG Interface
+  # ---------------------------------------------------------------------------
+  streamlit-app:
+    image: nlp_groupe6-streamlit-light:latest
+    container_name: rag-historian-app
+    ports:
+      - "8501:8501"
+    environment:
+      - GROQ_API_KEY=${GROQ_API_KEY}
+      - CHROMADB_HOST=chromadb
+      - CHROMADB_PORT=8000
+    depends_on:
+      chromadb:
+        condition: service_healthy
+    networks:
+      - frontend
+      - backend
+    restart: unless-stopped
+    volumes:
+      - ./data:/app/data:ro  # Read-only access to data
+
+  # ---------------------------------------------------------------------------
+  # ChromaDB - Vector Database for Embeddings
+  # ---------------------------------------------------------------------------
+  chromadb:
+    image: chromadb/chroma:latest
+    container_name: rag-historian-chromadb
+    ports:
+      - "8000:8000"
+    environment:
+      - CHROMA_SERVER_AUTH_PROVIDER=
+      - CHROMA_SERVER_AUTH_CREDENTIALS=
+      - IS_PERSISTENT=TRUE
+      - PERSIST_DIRECTORY=/chroma/chroma
+      - ANONYMIZED_TELEMETRY=FALSE
+    volumes:
+      - chroma_data:/chroma/chroma
+    networks:
+      - frontend
+      - backend
+    healthcheck:
+      test: ["CMD-SHELL", "timeout 2 bash -c '</dev/tcp/localhost/8000' || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 15s
+    restart: unless-stopped
+
+# =============================================================================
+# Networks
+# =============================================================================
+networks:
+  # Frontend network - exposed to host for external access
+  frontend:
+    driver: bridge
+    name: rag-frontend
+
+  # Backend network - internal communication between services
+  backend:
+    driver: bridge
+    internal: true  # Not accessible from host, only between containers
+    name: rag-backend
+
+# =============================================================================
+# Volumes
+# =============================================================================
+volumes:
+  # Persistent storage for ChromaDB vector embeddings
+  chroma_data:
+    driver: local
+    name: rag-chroma-data

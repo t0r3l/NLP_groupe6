@@ -1,0 +1,95 @@
+# Streamlit RAG Historian Application
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: streamlit-app
+  namespace: rag-historian
+  labels:
+    app.kubernetes.io/name: rag-historian
+    app.kubernetes.io/component: streamlit-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: streamlit-app
+  template:
+    metadata:
+      labels:
+        app: streamlit-app
+        app.kubernetes.io/name: rag-historian
+        app.kubernetes.io/component: streamlit-app
+    spec:
+      # Wait for ChromaDB to be ready
+      initContainers:
+        - name: wait-for-chromadb
+          image: busybox:1.36
+          command:
+            - sh
+            - -c
+            - |
+              until nc -z chromadb 8000; do
+                echo "Waiting for ChromaDB..."
+                sleep 2
+              done
+              echo "ChromaDB is ready!"
+      containers:
+        - name: streamlit-app
+          # Built by docker-compose as: nlp_groupe6-streamlit-app
+          # For K8s, push to a registry and update this path
+          image: europe-west3-docker.pkg.dev/rag-historian-gke-2026/rag-historian/rag-historian-app:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8501
+              name: http
+          env:
+            - name: GROQ_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: rag-historian-secrets
+                  key: groq-api-key
+          envFrom:
+            - configMapRef:
+                name: rag-historian-config
+          resources:
+            requests:
+              memory: "512Mi"
+              cpu: "250m"
+            limits:
+              memory: "2Gi"
+              cpu: "1000m"
+          livenessProbe:
+            httpGet:
+              path: /_stcore/health
+              port: 8501
+            initialDelaySeconds: 60
+            periodSeconds: 30
+            timeoutSeconds: 10
+            failureThreshold: 3
+          readinessProbe:
+            httpGet:
+              path: /_stcore/health
+              port: 8501
+            initialDelaySeconds: 30
+            periodSeconds: 10
+            timeoutSeconds: 5
+            failureThreshold: 3
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: streamlit-app
+  namespace: rag-historian
+  labels:
+    app.kubernetes.io/name: rag-historian
+    app.kubernetes.io/component: streamlit-app
+spec:
+  selector:
+    app: streamlit-app
+  ports:
+    - port: 8501
+      targetPort: 8501
+      name: http
+  type: ClusterIP
+

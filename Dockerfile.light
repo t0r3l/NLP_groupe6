@@ -1,0 +1,69 @@
+# =============================================================================
+# ULTRA-LIGHT Dockerfile for RAG Historian - Cloud Build Optimized
+# Target: < 4GB image size
+# =============================================================================
+
+FROM python:3.11-slim-bookworm
+
+LABEL maintainer="NLP Groupe 6" \
+      version="1.0" \
+      description="RAG Historian - Lightweight Streamlit App"
+
+WORKDIR /app
+
+# Install system dependencies in one layer
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+        curl \
+        build-essential \
+        git && \
+    pip install --no-cache-dir uv && \
+    useradd --create-home --uid 1000 --shell /bin/bash appuser && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/* /root/.cache /tmp/*
+
+# Copy only requirements first (better caching)
+COPY pyproject.toml Readme.md ./
+COPY src_rag/ ./src_rag/
+
+# Install Python dependencies with CPU-only PyTorch
+# Using --find-links for faster CPU-only torch download
+RUN uv pip install --system --no-cache \
+    --extra-index-url https://download.pytorch.org/whl/cpu \
+    -e . && \
+    # Aggressive cleanup
+    find /usr/local/lib/python3.11/site-packages -type d -name "tests" -exec rm -rf {} + 2>/dev/null || true && \
+    find /usr/local/lib/python3.11/site-packages -type d -name "test" -exec rm -rf {} + 2>/dev/null || true && \
+    find /usr/local/lib/python3.11/site-packages -type d -name "__pycache__" -exec rm -rf {} + 2>/dev/null || true && \
+    find /usr/local/lib/python3.11/site-packages -type d -name "docs" -exec rm -rf {} + 2>/dev/null || true && \
+    find /usr/local/lib/python3.11/site-packages -name "*.pyc" -delete 2>/dev/null || true && \
+    find /usr/local/lib/python3.11/site-packages -name "*.pyo" -delete 2>/dev/null || true && \
+    rm -rf /usr/local/lib/python3.11/site-packages/nvidia* 2>/dev/null || true && \
+    rm -rf /usr/local/lib/python3.11/site-packages/triton* 2>/dev/null || true && \
+    rm -rf /usr/local/lib/python3.11/site-packages/torch/test 2>/dev/null || true && \
+    rm -rf /usr/local/lib/python3.11/site-packages/torch/include 2>/dev/null || true && \
+    apt-get purge -y build-essential git && \
+    apt-get autoremove -y && \
+    rm -rf /var/lib/apt/lists/* /root/.cache /tmp/*
+
+# Copy application code
+COPY --chown=appuser:appuser app.py config.yml ./
+COPY --chown=appuser:appuser data/ ./data/
+
+USER appuser
+
+ENV PYTHONUNBUFFERED=1 \
+    PYTHONDONTWRITEBYTECODE=1
+
+EXPOSE 8501
+
+HEALTHCHECK --interval=30s --timeout=10s --start-period=60s --retries=3 \
+    CMD curl -f http://localhost:8501/_stcore/health || exit 1
+
+CMD ["streamlit", "run", "app.py", \
+     "--server.port=8501", \
+     "--server.address=0.0.0.0", \
+     "--server.headless=true", \
+     "--browser.gatherUsageStats=false", \
+     "--server.fileWatcherType=none"]
+

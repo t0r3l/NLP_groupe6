@@ -1,0 +1,10 @@
+# Namespace for RAG Historian application
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: rag-historian
+  labels:
+    app.kubernetes.io/name: rag-historian
+    app.kubernetes.io/component: namespace
+
+

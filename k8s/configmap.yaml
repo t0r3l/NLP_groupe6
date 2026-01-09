@@ -1,0 +1,12 @@
+# ConfigMap for RAG Historian application settings
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: rag-historian-config
+  namespace: rag-historian
+  labels:
+    app.kubernetes.io/name: rag-historian
+data:
+  CHROMADB_HOST: "chromadb"
+  CHROMADB_PORT: "8000"
+

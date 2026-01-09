@@ -1,0 +1,21 @@
+# =============================================================================
+# Terraform Variables - COPY TO terraform.tfvars AND FILL IN YOUR VALUES
+# =============================================================================
+
+# REQUIRED: Your GCP Project ID
+gcp_project_id = "your-gcp-project-id"
+
+# Optional: Path to GCP credentials JSON
+gcp_credentials_file = "~/.gcp/terraform-credentials.json"
+
+# Optional: GCP Region and Zone
+gcp_region = "europe-west3"
+gcp_zone   = "europe-west3-a"
+
+# Optional: Cluster configuration
+cluster_name      = "rag-historian-cluster"
+node_count        = 2
+node_machine_type = "e2-standard-2"  # 2 vCPU, 8GB RAM
+node_disk_size_gb = 50
+
+

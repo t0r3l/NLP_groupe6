@@ -1,13 +1,16 @@
+import os
 import numpy as np
 import re
 import tiktoken
 import openai
 import yaml
 from pathlib import Path
-from typing import Optional, Tuple, Dict
+from typing import Optional, Tuple, Dict, List
 
 from sentence_transformers import SentenceTransformer
 from sklearn.metrics.pairwise import cosine_similarity
+
+from src_rag.vector_store import VectorStore, InMemoryVectorStore, ChromaVectorStore, get_vector_store
 
 ROOT = Path(__file__).resolve().parents[1]
 CONF = yaml.safe_load(open(ROOT / "config.yml"))
@@ -58,7 +61,16 @@ def get_model(config):
 
 
 class RAG:
-    def __init__(self, chunk_size: int = 256, overlap: int = 0, small2big: bool = False, embedding: str = "miniLM", add_metadata: bool = False, enhance_query: bool = False):
+    def __init__(
+        self, 
+        chunk_size: int = 256, 
+        overlap: int = 0, 
+        small2big: bool = False, 
+        embedding: str = "miniLM", 
+        add_metadata: bool = False, 
+        enhance_query: bool = False,
+        use_vector_db: bool = None,  # None = auto-detect from env
+    ):
         self._chunk_size = chunk_size
         if overlap > 0 and small2big:
             overlap = 0
@@ -68,12 +80,19 @@ class RAG:
         self._embedding_name = embedding
         self._embedder = None
         self._loaded_files = set()
-        self._texts: list[str] = []
-        self._chunks: list[str] = []
-        self._corpus_embedding: np.ndarray | None = None
+        self._texts: List[str] = []
         self._client = CLIENT
         self._add_metadata = add_metadata
         self._enhance_query = enhance_query
+        
+        # Vector store (ChromaDB or in-memory)
+        self._vector_store: VectorStore = get_vector_store(use_vector_db)
+        self._use_vector_db = isinstance(self._vector_store, ChromaVectorStore)
+        
+        # Legacy attributes for backward compatibility with small2big
+        self._chunks: List[str] = []
+        self._corpus_embedding: np.ndarray | None = None
+        self._chunk_metadatas: List[Dict] = []
 
     # ---------------------------
     # Chargement & chunks
@@ -88,13 +107,7 @@ class RAG:
         self._texts += texts
 
         chunks_added = self._compute_chunks(texts)
-        self._chunks += chunks_added
-
-        new_embedding = self.embed_corpus(chunks_added)
-        if self._corpus_embedding is not None:
-            self._corpus_embedding = np.vstack([self._corpus_embedding, new_embedding])
-        else:
-            self._corpus_embedding = new_embedding
+        self._add_chunks_to_store(chunks_added)
 
     def load_wikipedia_files(self, filenames):
         """Load Wikipedia format files (with Entity/Title/URL/Region/Period headers)."""
@@ -106,32 +119,90 @@ class RAG:
 
         self._texts += texts
 
-        chunks_added = self._compute_wikipedia_chunks(texts)
-        self._chunks += chunks_added
+        chunks_added, metadatas = self._compute_wikipedia_chunks_with_metadata(texts)
+        self._add_chunks_to_store(chunks_added, metadatas)
 
-        new_embedding = self.embed_corpus(chunks_added)
+    def _add_chunks_to_store(self, chunks: List[str], metadatas: List[Dict] = None):
+        """Add chunks to both vector store and legacy arrays."""
+        if not chunks:
+            return
+            
+        # Compute embeddings
+        new_embedding = self.embed_corpus(chunks)
+        
+        # Add to vector store
+        self._vector_store.add(chunks, new_embedding, metadatas)
+        
+        # Keep legacy arrays for small2big compatibility
+        self._chunks.extend(chunks)
+        if metadatas:
+            self._chunk_metadatas.extend(metadatas)
+        else:
+            self._chunk_metadatas.extend([{}] * len(chunks))
+            
         if self._corpus_embedding is not None:
             self._corpus_embedding = np.vstack([self._corpus_embedding, new_embedding])
         else:
             self._corpus_embedding = new_embedding
 
-    def _compute_chunks(self, texts):
+    def _compute_chunks(self, texts) -> List[str]:
         return sum(
             (chunk_markdown(txt, chunk_size=self._chunk_size, overlap=self._overlap, add_metadata=self._add_metadata) for txt in texts),
             [],
         )
 
-    def _compute_wikipedia_chunks(self, texts):
+    def _compute_wikipedia_chunks(self, texts) -> List[str]:
         return sum(
             (chunk_wikipedia(txt, chunk_size=self._chunk_size, overlap=self._overlap, add_metadata=self._add_metadata) for txt in texts),
             [],
         )
 
+    def _compute_wikipedia_chunks_with_metadata(self, texts) -> Tuple[List[str], List[Dict]]:
+        """Compute chunks and extract metadata for vector store."""
+        all_chunks = []
+        all_metadatas = []
+        
+        for txt in texts:
+            chunks = chunk_wikipedia(
+                txt, 
+                chunk_size=self._chunk_size, 
+                overlap=self._overlap, 
+                add_metadata=self._add_metadata
+            )
+            # Extract metadata from text
+            _, meta = get_wikipedia_headers(txt)
+            
+            all_chunks.extend(chunks)
+            all_metadatas.extend([meta.copy() for _ in chunks])
+        
+        return all_chunks, all_metadatas
+
     def get_corpus_embedding(self):
         return self._corpus_embedding
 
-    def get_chunks(self):
+    def get_chunks(self) -> List[str]:
+        """Return all chunks (from legacy array for compatibility)."""
         return self._chunks
+    
+    def get_chunk_count(self) -> int:
+        """Return number of chunks in store."""
+        return self._vector_store.count()
+    
+    def get_chunk_with_metadata(self, idx: int) -> Tuple[str, Dict]:
+        """Get a chunk and its metadata by index."""
+        if 0 <= idx < len(self._chunks):
+            meta = self._chunk_metadatas[idx] if idx < len(self._chunk_metadatas) else {}
+            return self._chunks[idx], meta
+        return "", {}
+    
+    def clear(self):
+        """Clear all loaded data."""
+        self._vector_store.clear()
+        self._chunks = []
+        self._chunk_metadatas = []
+        self._corpus_embedding = None
+        self._texts = []
+        self._loaded_files = set()
 
     # ---------------------------
     # Embeddings
@@ -294,7 +365,7 @@ If the answer is not in the context information, reply "I cannot answer that que
 Query: {query}
 Answer:"""
 
-    def _get_context(self, query: str, use_enhancement: bool = None) -> list[str]:
+    def _get_context(self, query: str, use_enhancement: bool = None) -> List[str]:
         """
         Retrieve relevant context chunks for a query.
         
@@ -308,24 +379,22 @@ Answer:"""
         
         # 2) Embed the (possibly enhanced) query
         query_embedding = self.embed_questions([search_query])  # (1, d)
-        
-        # 3) Similarity scores with corpus
-        sim_scores = query_embedding @ self._corpus_embedding.T  # (1, N)
 
         if not self._small2big:
-            # Comportement classique : top-5 chunks indépendants
-            top_k = 5
-            idxs = list(np.argsort(sim_scores[0]))[-top_k:]
-            return [self._chunks[i] for i in idxs]
+            # Use vector store for simple retrieval (optimized with ChromaDB)
+            results = self._vector_store.search(query_embedding[0], top_k=5)
+            return [chunk for chunk, score, meta in results]
 
-        # small2Big = True → on sélectionne les 10 chunks les plus similaires et on les fusionne avec leurs chunks adjacents s'ils sont dans le top 10.
+        # small2Big = True → use legacy arrays for chunk merging
+        # (requires access to chunk indices for adjacency detection)
+        sim_scores = query_embedding @ self._corpus_embedding.T  # (1, N)
+        
         top_k_small = 10
         idxs = list(np.argsort(sim_scores[0]))[-top_k_small:]
         idxs = sorted(idxs)  # on remet dans l'ordre du texte
         
         # Fusion des meilleurs chunks avec chunks adjacents
-        # On garde (merged_chunk, max_sim_score) pour trier ensuite par pertinence
-        merged_chunks_with_scores: list[tuple[str, float]] = []
+        merged_chunks_with_scores: List[Tuple[str, float]] = []
         
         # Initialisation du groupe actuel avec le premier indice
         current_group = [idxs[0]]
@@ -350,6 +419,21 @@ Answer:"""
 
         # on limite à 5 "gros" chunks max pour le prompt
         return [chunk for chunk, _ in merged_chunks_with_scores[:5]]
+    
+    def search_with_metadata(self, query: str, top_k: int = 5) -> List[Tuple[str, float, Dict]]:
+        """
+        Search for relevant chunks and return with metadata.
+        
+        Args:
+            query: Search query
+            top_k: Number of results to return
+            
+        Returns:
+            List of (chunk, similarity_score, metadata) tuples
+        """
+        search_query = self.enhance_query(query) if self._enhance_query else query
+        query_embedding = self.embed_questions([search_query])
+        return self._vector_store.search(query_embedding[0], top_k=top_k)
 
 
 # ---------------------------

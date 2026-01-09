@@ -1,0 +1,69 @@
+# Cloud Build Ignore - Minimal upload for faster builds
+.git
+.gitignore
+.venv/
+.venv
+venv/
+venv
+__pycache__
+*.pyc
+*.pyo
+.pytest_cache
+.mypy_cache
+.ruff_cache
+*.egg-info
+dist/
+build/
+
+# Large directories not needed for build
+mlruns/
+results/
+.ipynb_checkpoints/
+*.ipynb
+
+# IDE
+.idea/
+.vscode/
+.cursor/
+*.swp
+
+# Docker/K8s configs (not needed in cloud build context)
+docker-compose*.yml
+k8s/
+deploy-*.sh
+
+# Terraform
+terraform/
+*.tfstate*
+*.tfvars
+.terraform/
+
+# Docs
+*.md
+!Readme.md
+
+# Data files (will be copied from COPY instruction)
+# Keeping data/ for the build
+
+# Lock files
+uv.lock
+poetry.lock
+
+# Env files
+.env
+.env.*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Large unnecessary files
+*.csv
+*.parquet
+*.json
+!config.yml
+!data/**
+

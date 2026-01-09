@@ -1,0 +1,89 @@
+# =============================================================================
+# Docker Ignore - Exclude everything not needed for runtime
+# =============================================================================
+
+# Git
+.git
+.gitignore
+.gitattributes
+
+# Python artifacts
+__pycache__
+*.py[cod]
+*$py.class
+*.so
+.Python
+.venv
+venv/
+ENV/
+env/
+*.egg-info/
+dist/
+build/
+.pytest_cache/
+.coverage
+htmlcov/
+.mypy_cache/
+.ruff_cache/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+.cursor/
+
+# Docker & Kubernetes (not needed inside container)
+Dockerfile*
+docker-compose*.yml
+.docker/
+k8s/
+deploy-*.sh
+
+# Terraform
+terraform/
+*.tfstate*
+*.tfvars
+.terraform/
+
+# MLflow local runs
+mlruns/
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb
+
+# Results and reports (not needed for runtime)
+results/
+*.md
+!Readme.md
+
+# Scripts not needed in container
+retrieve_wikipedia_pages.py
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Misc
+*.log
+*.tmp
+.env
+.env.*
+*.bak
+*.backup
+
+# Lock files (dependencies are installed fresh)
+uv.lock
+poetry.lock
+Pipfile.lock
+
+# Production alternative config
+pyproject.prod.toml
+
+# Large/unnecessary data files
+*.csv
+*.json
+*.parquet
+!data/**/*.json
+!data/**/*.csv

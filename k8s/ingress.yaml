@@ -1,0 +1,32 @@
+# Ingress for external access to the application
+# Configured for GKE with GCP Load Balancer
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: rag-historian-ingress
+  namespace: rag-historian
+  labels:
+    app.kubernetes.io/name: rag-historian
+    app.kubernetes.io/component: ingress
+  annotations:
+    # GKE Load Balancer - dynamic IP
+    kubernetes.io/ingress.class: "gce"
+spec:
+  # Default backend
+  defaultBackend:
+    service:
+      name: streamlit-app
+      port:
+        number: 8501
+  rules:
+    # Streamlit application
+    - http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: streamlit-app
+                port:
+                  number: 8501
